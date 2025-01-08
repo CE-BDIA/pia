@@ -2176,27 +2176,36 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#practica-2-scraping-de-tiempoes" class="md-nav__link">
+  <a href="#practica-2-exportacio-importacio" class="md-nav__link">
     <span class="md-ellipsis">
-      Pràctica 2. Scraping de tiempo.es
+      Pràctica 2. Exportació - Importació
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#practica-3-app-per-a-dissenyar-xxnn" class="md-nav__link">
+  <a href="#practica-3-scraping-de-tiempoes" class="md-nav__link">
     <span class="md-ellipsis">
-      Pràctica 3. App per a dissenyar XXNN
+      Pràctica 3. Scraping de tiempo.es
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#practica-4-consum-de-api" class="md-nav__link">
+  <a href="#practica-4-app-per-a-dissenyar-xxnn" class="md-nav__link">
     <span class="md-ellipsis">
-      Pràctica 4. Consum de API
+      Pràctica 4. App per a dissenyar XXNN
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#practica-5-consum-de-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pràctica 5. Consum de API
     </span>
   </a>
   
@@ -2441,27 +2450,36 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#practica-2-scraping-de-tiempoes" class="md-nav__link">
+  <a href="#practica-2-exportacio-importacio" class="md-nav__link">
     <span class="md-ellipsis">
-      Pràctica 2. Scraping de tiempo.es
+      Pràctica 2. Exportació - Importació
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#practica-3-app-per-a-dissenyar-xxnn" class="md-nav__link">
+  <a href="#practica-3-scraping-de-tiempoes" class="md-nav__link">
     <span class="md-ellipsis">
-      Pràctica 3. App per a dissenyar XXNN
+      Pràctica 3. Scraping de tiempo.es
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#practica-4-consum-de-api" class="md-nav__link">
+  <a href="#practica-4-app-per-a-dissenyar-xxnn" class="md-nav__link">
     <span class="md-ellipsis">
-      Pràctica 4. Consum de API
+      Pràctica 4. App per a dissenyar XXNN
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#practica-5-consum-de-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pràctica 5. Consum de API
     </span>
   </a>
   
@@ -2588,11 +2606,23 @@
 <p>S'executarà el programa només arrancar el contenidor. El programa mostrarà els registres que s'han inserit al crear la base de dades.</p>
 </li>
 </ol>
-<h2 id="practica-2-scraping-de-tiempoes">Pràctica 2. Scraping de <a href="http://tiempo.es">tiempo.es</a></h2>
+<h2 id="practica-2-exportacio-importacio">Pràctica 2. Exportació - Importació</h2>
+<p>Anem a fer una importació des d'un dataset a la nostra base de dades. El dataset a manipular serà el que pots trobar a <a href="https://www.kaggle.com/datasets/aslanahmedov/market-basket-analysis">https://www.kaggle.com/datasets/aslanahmedov/market-basket-analysis</a>. Aquest dataset te aproximadament més de mig milio de files.</p>
+<p>L'objectiu és importar-lo a una BBDD mongo, seguint:</p>
+<ol>
+<li>Crea una classe per guardar una fila.</li>
+<li>Fes un bloc que carregue el dataset i neteje els nuls.</li>
+<li>Guarda els primer 30000 registres en la BBDD.</li>
+<li>si veus que va lento, investiga com guardar els registres en blocs o lots en compte de un a un.</li>
+</ol>
+<blockquote>
+<p>Fes servir tot l'estudiat i treballat a classe</p>
+</blockquote>
+<h2 id="practica-3-scraping-de-tiempoes">Pràctica 3. Scraping de <a href="http://tiempo.es">tiempo.es</a></h2>
 <p>Revisant els continguts creats es tracta de crear un projecte que realitze un scrapping de una part de tiempo.es. Volem concretament saber l'oratge de les principals ciutats de la província de València, i per això revisarem els continguts que ens ofereix <a href="https://www.tiempo.es/valencia-es2509951.html">https://www.tiempo.es/valencia-es2509951.html</a></p>
 <p>Es demana docs, crear un dataset on tindràs per a cada ciutat la previsió del dia actual. Les zones a capturar son les que segueixen:</p>
 <p><center><img alt="Capturar el temps" src="../img/PRA_scrap.png" width="75%" /></center></p>
-<h2 id="practica-3-app-per-a-dissenyar-xxnn">Pràctica 3. App per a dissenyar XXNN</h2>
+<h2 id="practica-4-app-per-a-dissenyar-xxnn">Pràctica 4. App per a dissenyar XXNN</h2>
 <p>Anem a fer en aquest cas pràctic una aplicació que ens permetrà dissenyar una XXNN. El programa presentarà a la seua interfície un formulari en el qual li indicarem:</p>
 <ul>
 <li>Dimensió de la entrada de la xarxa</li>
@@ -2674,7 +2704,7 @@
 <li>Un cop entrenat, dibuixarà el gràfic de les funcions de pèrdua. </li>
 <li>Ha de permetre també modificar el disseny de la xarxa, tornar-la a entrenar i dibuixar un nou gràfic (sense perdre el primer ni els anteriors) per veure l'evolució del mateix.</li>
 </ul>
-<h2 id="practica-4-consum-de-api">Pràctica 4. Consum de API</h2>
+<h2 id="practica-5-consum-de-api">Pràctica 5. Consum de API</h2>
 <p>Per a concloure, anem a fer una aplicació client d'una API del temps <a href="https://www.el-tiempo.net/api">https://www.el-tiempo.net/api</a>. A la qual es presentaran 2 quadres de selecció desplegable, un per a provincia i altre per a municipi.</p>
 <p>En obrir el programa es consumirà la API per a seleccionar les provincies. Amb aquesta informació s'omplirà el quadre de l'esquerre (Provincia).</p>
 <p>En seleccionar la provincia, es consumirà la API i s'ompliran tots els municipis al seleccionable de la dreta. </p>
