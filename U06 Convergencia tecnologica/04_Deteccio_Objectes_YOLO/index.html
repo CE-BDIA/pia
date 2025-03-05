@@ -6,8 +6,6 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Tutorial de marpit/marp per a fer presentacions en markdown">
-      
       
       
       
@@ -18,7 +16,7 @@
     
     
       
-        <title>Configuració d'Azure - Programació d'Intel·ligència Artificial - CE Big Data i IA</title>
+        <title>04 Deteccio Objectes YOLO - Programació d'Intel·ligència Artificial - CE Big Data i IA</title>
       
     
     
@@ -70,7 +68,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#configuracio-de-azure" class="md-skip">
+        <a href="#1-introduccion-descripcion-breve-de-yolo" class="md-skip">
           Salta el contingut
         </a>
       
@@ -105,7 +103,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Configuració d'Azure
+              04 Deteccio Objectes YOLO
             
           </span>
         </div>
@@ -2247,7 +2245,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../01_AzureTextAnalytics/" class="md-nav__link">
+      <a href="../../U05%20Programaci%C3%B3%20d%27Apps%20d%27IA/01_AzureTextAnalytics/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2268,7 +2266,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../02_FaceDetection/" class="md-nav__link">
+      <a href="../../U05%20Programaci%C3%B3%20d%27Apps%20d%27IA/02_FaceDetection/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2289,7 +2287,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../03_ComputerVision/" class="md-nav__link">
+      <a href="../../U05%20Programaci%C3%B3%20d%27Apps%20d%27IA/03_ComputerVision/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2310,7 +2308,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../04_Practiques/" class="md-nav__link">
+      <a href="../../U05%20Programaci%C3%B3%20d%27Apps%20d%27IA/04_Practiques/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2373,7 +2371,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../U06%20Convergencia%20tecnologica/01_OpenCV_Basic/" class="md-nav__link">
+      <a href="../01_OpenCV_Basic/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2394,7 +2392,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../U06%20Convergencia%20tecnologica/02_CapturarImatges/" class="md-nav__link">
+      <a href="../02_CapturarImatges/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2415,7 +2413,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../U06%20Convergencia%20tecnologica/03_Deteccio_facial/" class="md-nav__link">
+      <a href="../03_Deteccio_facial/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2516,8 +2514,6 @@
   
   
   
-    
-  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -2526,19 +2522,65 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#azure-cognitive-services" class="md-nav__link">
+  <a href="#1-introduccion-descripcion-breve-de-yolo" class="md-nav__link">
     <span class="md-ellipsis">
-      Azure Cognitive Services
+      1. Introducción. Descripción breve de YOLO
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Azure Cognitive Services">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-dataset" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Dataset
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Dataset">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#crear-i-configurar-un-compte-dazure" class="md-nav__link">
+  <a href="#21-formato-txt" class="md-nav__link">
     <span class="md-ellipsis">
-      Crear i configurar un compte d'Azure:
+      2.1. Formato txt
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-datayaml" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2. data.yaml
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-augmentacio-del-dataset" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.3. Augmentació del Dataset
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.3. Augmentació del Dataset">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#231-aumentacion-en-linea-on-the-fly" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.3.1. Aumentación en línea (on-the-fly)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#232-aumentacion-previa-offline" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.3.2. Aumentación previa (offline)
     </span>
   </a>
   
@@ -2546,6 +2588,29 @@
         
       </ul>
     </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-entrenamiento-del-modelo" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Entrenamiento del modelo
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-prediccion-del-modelo" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Prediccion del modelo
+    </span>
+  </a>
   
 </li>
       
@@ -2564,72 +2629,209 @@
                   
 
 
-<h1 id="configuracio-de-azure">Configuració de Azure</h1>
-<hr />
-<p>En aquesta pràctica anem a veure com configurar un compte amb Azure per a poder treballar i integrar les nostre aplicacions amb ell.</p>
-<p><img alt="w:600" src="../img/Azure.png" /> </p>
-<hr />
-<p>Realment hi han diverses plataformes, com be <strong>Google</strong>, </p>
-<p><img alt="bg right w:600px" src="../img/Google.png" /> </p>
-<hr />
-<p>Realment hi han diverses plataformes, com be <strong>Amazon</strong>, </p>
-<p><img alt="bg right w:600px" src="../img/AWS.png" /> </p>
-<hr />
-<p>i la pròpia <strong>Azure</strong>, </p>
-<p><img alt="bg right w:600px" src="../img/Azure_CS.png" /> </p>
-<hr />
-<h2 id="azure-cognitive-services">Azure Cognitive Services</h2>
-<h3 id="crear-i-configurar-un-compte-dazure">Crear i configurar un compte d'Azure:</h3>
-<p>Busquem <em>Azure free students</em> en Google i ens portarà a <a href="https://azure.microsoft.com/es-es/free/students/">https://azure.microsoft.com/es-es/free/students/</a></p>
-<hr />
-<p><img alt="bg w:500px" src="../img/00.png" /> 
-<img alt="bg w:500px" src="../img/01.png" /> </p>
-<hr />
+  <h1>04 Deteccio Objectes YOLO</h1>
+
+<h2 id="1-introduccion-descripcion-breve-de-yolo">1. Introducción. Descripción breve de YOLO</h2>
+<p><a href="https://docs.ultralytics.com/es">https://docs.ultralytics.com/es</a></p>
+<p>YOLO (You Only Look Once) es una familia de modelos de deep learning enfocados en la detección de objetos en imágenes o videos. Se caracteriza por su velocidad y precisión en tiempo real, ya que el modelo procesa toda la imagen de una sola vez para predecir las regiones donde se encuentran los objetos y su clase.</p>
+<p>Cómo se entrena un modelo YOLO</p>
 <ul>
-<li>Li diguem de <em>Empezar aquí</em></li>
-<li>Crear una cuents</li>
+<li>Recopilación de datos: Se juntan imágenes etiquetadas con las coordenadas de los objetos y sus categorías.</li>
+<li>Preparación de datos: Se estructuran las etiquetas en un formato compatible (por ejemplo, COCO o YOLO).</li>
+<li>Configuración del entrenamiento: Se elige la arquitectura YOLO (p. ej. YOLOv5, YOLOv7, YOLOv8, etc.), el tamaño del lote (batch size) y los hiperparámetros (épocas, tasa de aprendizaje, etc.).</li>
+<li>Proceso de entrenamiento: Con cada batch de imágenes, la red ajusta los pesos para minimizar la diferencia entre las predicciones y las etiquetas reales.</li>
+<li>Validación y ajuste: Se evalúa el rendimiento en un conjunto de validación para ajustar hiperparámetros y evitar sobreajuste.</li>
 </ul>
-<p><img alt="bg right w:500px" src="../img/02.png" /> </p>
-<hr />
-<p><img alt="bg w:500px" src="../img/03.png" /> 
-<img alt="bg w:500px" src="../img/04.png" /> </p>
-<hr />
+<h2 id="2-dataset">2. Dataset</h2>
+<p>La estructura del dataset se divide en dos carpetas y archivos de configuración</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-0-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-0-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-0-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-0-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-0-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-0-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-0-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-0-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-0-10">10</a></span>
+<span class="normal"><a href="#__codelineno-0-11">11</a></span>
+<span class="normal"><a href="#__codelineno-0-12">12</a></span>
+<span class="normal"><a href="#__codelineno-0-13">13</a></span>
+<span class="normal"><a href="#__codelineno-0-14">14</a></span>
+<span class="normal"><a href="#__codelineno-0-15">15</a></span>
+<span class="normal"><a href="#__codelineno-0-16">16</a></span>
+<span class="normal"><a href="#__codelineno-0-17">17</a></span>
+<span class="normal"><a href="#__codelineno-0-18">18</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a>dataset/
+<a id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="w"> </span>├─<span class="w"> </span>data.yaml
+<a id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="w"> </span>├─<span class="w"> </span>images/
+<a id="__codelineno-0-4" name="__codelineno-0-4"></a><span class="w"> </span>│<span class="w">   </span>├─<span class="w"> </span>train/
+<a id="__codelineno-0-5" name="__codelineno-0-5"></a><span class="w"> </span>│<span class="w">   </span>│<span class="w">   </span>├─<span class="w"> </span>foto1.jpg
+<a id="__codelineno-0-6" name="__codelineno-0-6"></a><span class="w"> </span>│<span class="w">   </span>│<span class="w">   </span>├─<span class="w"> </span>foto2.jpg
+<a id="__codelineno-0-7" name="__codelineno-0-7"></a><span class="w"> </span>│<span class="w">   </span>│<span class="w">   </span>└─<span class="w"> </span>...
+<a id="__codelineno-0-8" name="__codelineno-0-8"></a><span class="w"> </span>│<span class="w">   </span>└─<span class="w"> </span>val/
+<a id="__codelineno-0-9" name="__codelineno-0-9"></a><span class="w"> </span>│<span class="w">       </span>├─<span class="w"> </span>fotoX.jpg
+<a id="__codelineno-0-10" name="__codelineno-0-10"></a><span class="w"> </span>│<span class="w">       </span>└─<span class="w"> </span>...
+<a id="__codelineno-0-11" name="__codelineno-0-11"></a><span class="w"> </span>└─<span class="w"> </span>labels/
+<a id="__codelineno-0-12" name="__codelineno-0-12"></a><span class="w">     </span>├─<span class="w"> </span>train/
+<a id="__codelineno-0-13" name="__codelineno-0-13"></a><span class="w">     </span>│<span class="w">   </span>├─<span class="w"> </span>foto1.txt
+<a id="__codelineno-0-14" name="__codelineno-0-14"></a><span class="w">     </span>│<span class="w">   </span>├─<span class="w"> </span>foto2.txt
+<a id="__codelineno-0-15" name="__codelineno-0-15"></a><span class="w">     </span>│<span class="w">   </span>└─<span class="w"> </span>...
+<a id="__codelineno-0-16" name="__codelineno-0-16"></a><span class="w">     </span>└─<span class="w"> </span>val/
+<a id="__codelineno-0-17" name="__codelineno-0-17"></a><span class="w">         </span>├─<span class="w"> </span>fotoX.txt
+<a id="__codelineno-0-18" name="__codelineno-0-18"></a><span class="w">         </span>└─<span class="w"> </span>...
+</code></pre></div></td></tr></table></div>
+<p>donde:
+- Por cada <code>fotoX.jpg</code> en <code>images/train</code>, hay un correspondiente <code>fotoX.txt</code> en <code>labels/train</code> que describe todas las cajas de objetos de esa imagen (una línea por objeto).
+- Lo mismo para la carpeta de validación val.</p>
+<p>Puedes encontrar un ejemplo aqui <a href="https://universe.roboflow.com/vc/matriculas-espanolas/dataset/1">https://universe.roboflow.com/vc/matriculas-espanolas/dataset/1</a></p>
+<h3 id="21-formato-txt">2.1. Formato txt</h3>
+<p>El formato TXT que emplea YOLO (tanto v5, v7, v8, etc.) para las etiquetas de detección de objetos sigue una estructura muy concreta. Cada imagen tiene asociado un fichero <em>.txt</em> con el mismo nombre (salvo la extensión). Dentro del fichero de etiquetas, cada línea describe un <strong>bounding box</strong> (caja delimitadora) de un objeto detectado/anotado en la imagen. La línea se compone de:</p>
+<p><div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a>class_id<span class="w">  </span>x_center<span class="w">  </span>y_center<span class="w">  </span>width<span class="w">  </span>height
+</code></pre></div></td></tr></table></div>
+todos los valores están normalizados en el rango 0-1 con respecto a las dimensiones de la imagen:</p>
 <ul>
-<li>Ens donarem d'alta amb el compte que <code>@alu.edu.gva.es</code> que tens assignat.</li>
-<li>El password pot ser distint que el del correu!!</li>
-<li>Comprovarem el codi que ens han enviat.</li>
-<li>Verificarem que no som un bot</li>
+<li><strong>class_id</strong>: Identificador de la clase (objeto) en formato entero (0, 1, 2...).</li>
+<li>Si solo tienes una clase (p. ej. “license_plate”), será siempre 0. Si por ejemplo tienes matriculas y faro_izq y faro_der, matricula seria el 0 y faro_izq seria el 1 y el faro_der el 2</li>
+<li><strong>x_center</strong>: Coordenada X del centro de la caja, normalizada (dividida entre el ancho de la imagen).</li>
+<li><strong>y_center</strong>: Coordenada Y del centro de la caja, normalizada (dividida entre la altura de la imagen).</li>
+<li><strong>width</strong>: Ancho de la caja, también normalizado (dividido entre el ancho de la imagen).</li>
+<li><strong>height</strong>: Alto de la caja, normalizado (dividido entre la altura de la imagen).</li>
 </ul>
-<p><img alt="bg right w:500px" src="../img/05.png" /> </p>
-<hr />
-<p><img alt="bg w:400px" src="../img/06.png" /> 
-<img alt="bg w:400px" src="../img/07.png" /> </p>
-<hr />
+<div class="admonition example">
+<p class="admonition-title">Exemple d'una BB</p>
+<p>Imagina que tu imagen mide 1280 px de ancho por 720 px de alto, y la caja delimitadora que te interesa va de (x1=600, y1=200) a (x2=750, y2=300).</p>
+<p>Valores reales:</p>
 <ul>
-<li>Completarem les dades</li>
+<li>Ancho de la caja = x2 - x1 = 150 px</li>
+<li>Alto de la caja = y2 - y1 = 100 px</li>
+<li>Centro X = (x1 + x2)/2 = (600 + 750)/2 = 675 px</li>
+<li>Centro Y = (y1 + y2)/2 = (200 + 300)/2 = 250 px</li>
 </ul>
-<p><img alt="bg right w:400px" src="../img/08.png" /> </p>
-<hr />
+<p>Valores normalizados:
+- Ancho normalizado = 150 / 1280 ≈ 0.1172
+- Alto normalizado = 100 / 720 ≈ 0.1389
+- Centro X normalizado = 675 / 1280 ≈ 0.5273
+- Centro Y normalizado = 250 / 720 ≈ 0.3472</p>
+<p>Si <code>class_id=0</code>, la línea en tu archivo .txt quedaría:
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a>0 0.5273 0.3472 0.1172 0.1389
+</code></pre></div></td></tr></table></div></p>
+</div>
+<p>En definitiva, cuando YOLO entrena (o infiere), buscará estos archivos .txt para saber dónde están los objetos (en tu caso, las matrículas) y con qué clase asociarlos. Esto es fundamental para que el modelo <em>aprenda</em> de forma supervisada. </p>
+<p>Luego, en inferencia o prediccion, el modelo generará sus propias coordenadas de salida, también normalmente en un sistema similar, pero te las proveerá en escala absoluta o normalizada según la librería que estés usando.</p>
+<h3 id="22-datayaml">2.2. <code>data.yaml</code></h3>
+<p>En el caso de YOLO (especialmente en variantes como YOLOv5 o YOLOv8), el archivo <code>.yaml</code> que se encuentra en la carpeta principal (o en la raíz del dataset) sirve para describir la configuración del conjunto de datos.</p>
+<p>Por lo general, este archivo .yaml contiene información como:</p>
 <ul>
-<li>Ens donarà finalment un enllaç de verificació</li>
+<li><strong>Rutas de los datos</strong>: </li>
+<li>La ruta o path donde se ubican las imágenes de entrenamiento (train).</li>
+<li>La ruta donde se ubican las imágenes de validación (val).</li>
+<li>(Opcionalmente) la ruta a las imágenes de prueba (test).</li>
+<li>Cantidad y nombre de las clases:<ul>
+<li>Un listado con los nombres de cada clase (por ejemplo, ['perro', 'gato', 'persona']).</li>
+<li>El número total de clases en el dataset.</li>
 </ul>
-<p><img alt="bg right w:400px" src="../img/09.png" /> </p>
-<hr />
-<p><img alt="bg w:500px" src="../img/10.png" /> </p>
-<p><img alt="bg w:500px" src="../img/11.png" /> </p>
-<hr />
-<p>i finalment ja tenim disponibles aquests serveix.</p>
-<p><img alt="h:200px" src="../img/12.png" /> 
-<img alt="h:200px" src="../img/13.png" /> </p>
+</li>
+<li>Parámetros adicionales (opcional):<ul>
+<li>Rutas de anotaciones, si se manejan en diferentes carpetas.</li>
+<li>Configuraciones específicas para el entrenamiento (aunque este tipo de info a veces va en otro archivo distinto).</li>
+<li>Identificadores o campos extras que te permitan integrar el dataset en un flujo de trabajo más complejo.</li>
+</ul>
+</li>
+</ul>
+<p>Un ejemplo sencillo de un archivo data.yaml (para YOLOv5, por ejemplo) se vería así:</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">YAML</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-3-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-3-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-3-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-3-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-3-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-3-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-3-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-3-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-3-10">10</a></span>
+<span class="normal"><a href="#__codelineno-3-11">11</a></span>
+<span class="normal"><a href="#__codelineno-3-12">12</a></span>
+<span class="normal"><a href="#__codelineno-3-13">13</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="nt">train</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">../train/images</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2"></a><span class="nt">val</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">../valid/images</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3"></a><span class="nt">test</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">../test/images</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4"></a>
+<a id="__codelineno-3-5" name="__codelineno-3-5"></a><span class="nt">nc</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6"></a><span class="nt">names</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&#39;matricula&#39;</span><span class="p p-Indicator">,</span><span class="s">&#39;faro_izq&#39;</span><span class="p p-Indicator">,</span><span class="s">&#39;faro_der&#39;</span><span class="p p-Indicator">]</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7"></a>
+<a id="__codelineno-3-8" name="__codelineno-3-8"></a><span class="nt">roboflow</span><span class="p">:</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9"></a><span class="w">  </span><span class="nt">workspace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">vc</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10"></a><span class="w">  </span><span class="nt">project</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">matriculas-espanolas</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11"></a><span class="w">  </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12"></a><span class="w">  </span><span class="nt">license</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CC BY 4.0</span>
+<a id="__codelineno-3-13" name="__codelineno-3-13"></a><span class="w">  </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://universe.roboflow.com/vc/matriculas-espanolas/dataset/1</span>
+</code></pre></div></td></tr></table></div>
+<h3 id="23-augmentacio-del-dataset">2.3. Augmentació del Dataset</h3>
+<p>Como sabemos, una de las partes mas complicadas es la generación del dataset. Podemos incrementar la cantidad de imagenes de dos modos</p>
+<h4 id="231-aumentacion-en-linea-on-the-fly">2.3.1. Aumentación en línea (on-the-fly)</h4>
+<p>Este tipo de aumentación se hace durante el entrenamiento. La mayoría de implementaciones recientes de YOLO (p. ej., YOLOv5, YOLOv7, YOLOv8) ya incluyen una serie de transformaciones aplicadas automáticamente. </p>
+<p><strong><em>Configuración de hiperparámetros</em></strong></p>
+<p>En muchos repositorios (como el de YOLOv5), encuentras un archivo de hiperparámetros, a menudo llamado <code>hyp.yaml</code> o similar. Dentro de este archivo, puedes ajustar distintos parámetros de aumentación como:</p>
+<ul>
+<li>hsv_h, hsv_s, hsv_v: Aumentos de tono, saturación y valor en espacio de color HSV.</li>
+<li>degrees: Rotación.</li>
+<li>translate: Traslación (movimiento de la imagen).</li>
+<li>scale: Escalado.</li>
+<li>shear: Efecto de cizalladura (shear).</li>
+<li>flipud: Volteo vertical.</li>
+<li>fliplr: Volteo horizontal.</li>
+</ul>
+<p>Por ejemplo, en YOLOv5 (dentro de su repo oficial) existe un archivo hyp.yaml con parámetros predefinidos. Puedes editarlo para ajustar la intensidad de cada transformación.</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">YAML</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-4-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-4-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-4-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-4-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-4-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-4-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-4-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-4-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-4-10">10</a></span>
+<span class="normal"><a href="#__codelineno-4-11">11</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="c1"># Ejemplo (simplificado) hyp.yaml</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2"></a><span class="nt">augments</span><span class="p">:</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3"></a><span class="w">  </span><span class="nt">degrees</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4"></a><span class="w">  </span><span class="nt">translate</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.1</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5"></a><span class="w">  </span><span class="nt">scale</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.9</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6"></a><span class="w">  </span><span class="nt">shear</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7"></a><span class="w">  </span><span class="nt">flipud</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8"></a><span class="w">  </span><span class="nt">fliplr</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.5</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9"></a><span class="w">  </span><span class="nt">hsv_h</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.015</span>
+<a id="__codelineno-4-10" name="__codelineno-4-10"></a><span class="w">  </span><span class="nt">hsv_s</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.7</span>
+<a id="__codelineno-4-11" name="__codelineno-4-11"></a><span class="w">  </span><span class="nt">hsv_v</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.4</span>
+</code></pre></div></td></tr></table></div>
+<p>Al entrenar tu modelo (por ejemplo <code>python train.py --hyp hyp.yaml</code> ...), YOLO aplicará automáticamente estas transformaciones al cargar cada lote (batch) de imágenes. </p>
+<h4 id="232-aumentacion-previa-offline">2.3.2. Aumentación previa (offline)</h4>
+<p>La idea aquí es crear copias aumentadas de las imágenes (y sus etiquetas correspondientes) antes de iniciar el entrenamiento. Para ello, se pueden usar librerías como <code>Albumentations</code>, <code>imgaug</code> o las transformaciones de torchvision.</p>
+<p>Flujo general con Albumentations
+Instalación:</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1"></a>pip<span class="w"> </span>install<span class="w"> </span>albumentations
+</code></pre></div></td></tr></table></div>
+<p>Configurar un script de aumento:</p>
+<ul>
+<li>Definir las transformaciones que deseas aplicar (p. ej., rotaciones, flips, cambios de brillo, etc.).</li>
+<li>Cargar cada imagen y su anotación, aplicar la transformación y luego exportar la imagen aumentada y su nueva anotación. Tras cada transformación, es probable que las cajas delimitadoras (bounding boxes) cambien, por lo cual debes guardarlas con el nuevo formato (por ejemplo, en un archivo .txt con formato YOLO).</li>
+<li>Guardar imágenes aumentadas: Puedes almacenarlas en carpetas como images/train_aug, por ejemplo, y usar esta carpeta ampliada para entrenar.</li>
+</ul>
+<p>Este método crea nuevos archivos en disco, aumentando explícitamente el número de imágenes en tu dataset. Sin embargo, ten en cuenta que esto ocupa más espacio y lleva tiempo adicional para la generación. A cambio, puede ser beneficioso si quieres realizar un control muy preciso de tus datos o si entrenas con plataformas que no admiten fácilmente la aumentación en línea.</p>
+<p>Para etiquetar un conjunto de imágenes, podemos utilizar herramientas como:</p>
+<ul>
+<li><a href="https://github.com/HumanSignal/labelImg">https://github.com/HumanSignal/labelImg</a></li>
+<li><a href="https://www.makesense.ai/">https://www.makesense.ai/</a></li>
+</ul>
+<h2 id="3-entrenamiento-del-modelo">3. Entrenamiento del modelo</h2>
+<p><TO-DO></p>
+<h2 id="4-prediccion-del-modelo">4. Prediccion del modelo</h2>
+<p><TO-DO></p>
 
 
 
 
 
 
-
-  
-  
 
 
 
