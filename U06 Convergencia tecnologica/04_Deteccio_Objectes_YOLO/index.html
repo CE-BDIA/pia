@@ -9,6 +9,10 @@
       
       
       
+        <link rel="prev" href="../03_Deteccio_facial/">
+      
+      
+        <link rel="next" href="../../info/guia_didactica/">
       
       
       <link rel="icon" href="../../img/jaume.png">
@@ -16,7 +20,7 @@
     
     
       
-        <title>04 Deteccio Objectes YOLO - Programació d'Intel·ligència Artificial - CE Big Data i IA</title>
+        <title>4. Detecció d'objectes - Programació d'Intel·ligència Artificial - CE Big Data i IA</title>
       
     
     
@@ -103,7 +107,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              04 Deteccio Objectes YOLO
+              4. Detecció d'objectes
             
           </span>
         </div>
@@ -2333,17 +2337,19 @@
       
   
   
+    
   
   
+  
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
         
           
           <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
@@ -2357,7 +2363,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_7">
             <span class="md-nav__icon md-icon"></span>
             Unitat 6. Convergència tecnològica
@@ -2422,6 +2428,156 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    4. Detecció d'objectes
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    4. Detecció d'objectes
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Taula de continguts">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Taula de continguts
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-introduccion-descripcion-breve-de-yolo" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Introducción. Descripción breve de YOLO
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-dataset" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Dataset
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Dataset">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-formato-txt" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1. Formato txt
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-datayaml" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2. data.yaml
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-augmentacio-del-dataset" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.3. Augmentació del Dataset
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.3. Augmentació del Dataset">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#231-aumentacion-en-linea-on-the-fly" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.3.1. Aumentación en línea (on-the-fly)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#232-aumentacion-previa-offline" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.3.2. Aumentación previa (offline)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-entrenamiento-del-modelo" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Entrenamiento del modelo
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-prediccion-del-modelo" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Prediccion del modelo
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -2629,7 +2785,7 @@
                   
 
 
-  <h1>04 Deteccio Objectes YOLO</h1>
+  <h1>4. Detecció d'objectes</h1>
 
 <h2 id="1-introduccion-descripcion-breve-de-yolo">1. Introducción. Descripción breve de YOLO</h2>
 <p><a href="https://docs.ultralytics.com/es">https://docs.ultralytics.com/es</a></p>
