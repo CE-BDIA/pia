@@ -19,7 +19,7 @@
       
       
       <link rel="icon" href="../../img/jaume.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
     
     
       
@@ -27,7 +27,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.618322db.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
@@ -3464,34 +3464,6 @@
 
               
             
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../U06%20Convergencia%20tecnologica/04_Deteccio_Objectes_YOLO/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    4. Detecció d'objectes
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
           </ul>
         </nav>
       
@@ -4865,7 +4837,7 @@ Aquesta lentitud es fa evident en situacions en què es repeteix una operació s
 <h3 id="82-exemple-de-seleccio-de-valors-aleatoris">8.2. Exemple de selecció de valors aleatoris</h3>
 <p>Un dels usos més comuns del <em>fancy indexing</em> és la selecció de files aleatòries d'una matriu.</p>
 <p>Imagineu una distribució com la següent:</p>
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-38-1"> 1</a></span>
+<p><div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-38-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-38-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-38-3"> 3</a></span>
 <span class="normal"><a href="#__codelineno-38-4"> 4</a></span>
@@ -4887,12 +4859,9 @@ Aquesta lentitud es fa evident en situacions en què es repeteix una operació s
 <a id="__codelineno-38-10" name="__codelineno-38-10"></a>
 <a id="__codelineno-38-11" name="__codelineno-38-11"></a><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]);</span>
 </code></pre></div></td></tr></table></div>
-<center>
-
-![Alt text](img/numpy/scatter.png){width=50%}
-
-</center>
-
+<center></p>
+<p><img alt="Alt text" src="../img/numpy/scatter.png" width="50%" /></p>
+<p></center></p>
 <p>Podem utilitzar la <em>fancy indexing</em> per a seleccionar 20 punts aleatòris.</p>
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-39-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-39-2"> 2</a></span>
@@ -4917,12 +4886,9 @@ Aquesta lentitud es fa evident en situacions en què es repeteix una operació s
 <a id="__codelineno-39-11" name="__codelineno-39-11"></a><span class="n">selection</span><span class="o">.</span><span class="n">shape</span> <span class="c1"># (20, 2)</span>
 </code></pre></div></td></tr></table></div>
 <p>Si ho representem en un gràfic de punts:</p>
-<center>
-
-![Alt text](img/numpy/scatter2.png){width=50%}
-
-</center>
-
+<p><center></p>
+<p><img alt="Alt text" src="../img/numpy/scatter2.png" width="50%" /></p>
+<p></center></p>
 <h3 id="83-modificant-valors-amb-fancy-indexing">8.3. Modificant valors amb <em>fancy indexing</em></h3>
 <p>Amés de poder accedir de forma còmoda utilitzant el <em>fancy indexing</em> també podem modificar valors a través d'este mecanisme.</p>
 <div class="admonition example">
@@ -5019,12 +4985,9 @@ Aquesta lentitud es fa evident en situacions en què es repeteix una operació s
 <a id="__codelineno-48-11" name="__codelineno-48-11"></a>
 <a id="__codelineno-48-12" name="__codelineno-48-12"></a><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">bins</span><span class="p">,</span> <span class="n">counts</span><span class="p">,</span> <span class="n">drawstyle</span><span class="o">=</span><span class="s1">&#39;steps&#39;</span><span class="p">);</span> <span class="c1"># creem un histograma</span>
 </code></pre></div></td></tr></table></div>
-<center>
-
-![Alt text](img/numpy/hist_fancy.png){width=50%}
-
-</center>
-
+<p><center></p>
+<p><img alt="Alt text" src="../img/numpy/hist_fancy.png" width="50%" /></p>
+<p></center></p>
 <p>Obtenim el mateix resultat si directament utilitzem la funció de matplotlib <code>hist()</code> que fa un tractament similar al que hem fet nosaltres manualment.</p>
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-49-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-49-1" name="__codelineno-49-1"></a><span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">bins</span><span class="p">,</span> <span class="n">histtype</span><span class="o">=</span><span class="s1">&#39;step&#39;</span><span class="p">);</span>
 </code></pre></div></td></tr></table></div>
@@ -5218,10 +5181,10 @@ Aquesta lentitud es fa evident en situacions en què es repeteix una operació s
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.code.copy", "content.code.select", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copiat al porta-retalls", "clipboard.copy": "C\u00f2pia al porta-retalls", "search.result.more.one": "1 m\u00e9s en aquesta p\u00e0gina", "search.result.more.other": "# m\u00e9s en aquesta p\u00e0gina", "search.result.none": "Cap document coincideix", "search.result.one": "1 document coincident", "search.result.other": "# documents coincidents", "search.result.placeholder": "Escriu per a comen\u00e7ar a cercar", "search.result.term.missing": "Desaparegut", "select.version": "Selecciona la versi\u00f3"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.code.copy", "content.code.select", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiat al porta-retalls", "clipboard.copy": "C\u00f2pia al porta-retalls", "search.result.more.one": "1 m\u00e9s en aquesta p\u00e0gina", "search.result.more.other": "# m\u00e9s en aquesta p\u00e0gina", "search.result.none": "Cap document coincideix", "search.result.one": "1 document coincident", "search.result.other": "# documents coincidents", "search.result.placeholder": "Escriu per a comen\u00e7ar a cercar", "search.result.term.missing": "Desaparegut", "select.version": "Selecciona la versi\u00f3"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.e71a0d61.min.js"></script>
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
         <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
