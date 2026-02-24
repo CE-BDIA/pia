@@ -1,0 +1,6 @@
+https://pypi.org/project/face-recognition/
+https://labelstud.io/blog/quickly-create-datasets-for-training-yolo-object-detection-with-label-studio/
+https://github.com/coderonion/awesome-object-detection-datasets
+https://github.com/ageitgey/face_recognition/tree/master
+https://github.com/akanametov/yolo-face/blob/dev/docs/engine.md
+https://medium.com/@erdibillkaan/object-detection-and-face-recognition-with-yolov8n-356b22bacc48

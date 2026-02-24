@@ -1,0 +1,4036 @@
+
+<!doctype html>
+<html lang="ca" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../6_Entrenament/">
+      
+      
+        <link rel="next" href="../../../info/guia_didactica/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../img/jaume.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>8. Reconeixement facial - Programació d'Intel·ligència Artificial - CE Big Data i IA</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#1-deteccio-de-cares" class="md-skip">
+          Salta el contingut
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Capçalera">
+    <a href="../../.." title="Programació d&#39;Intel·ligència Artificial - CE Big Data i IA" class="md-header__button md-logo" aria-label="Programació d'Intel·ligència Artificial - CE Big Data i IA" data-md-component="logo">
+      
+  <img src="../../../img/jaume.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Programació d'Intel·ligència Artificial - CE Big Data i IA
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              8. Reconeixement facial
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Cerca" placeholder="Cerca" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Cerca">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Neteja" aria-label="Neteja" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicialitzant cerca
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegació" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Programació d&#39;Intel·ligència Artificial - CE Big Data i IA" class="md-nav__button md-logo" aria-label="Programació d'Intel·ligència Artificial - CE Big Data i IA" data-md-component="logo">
+      
+  <img src="../../../img/jaume.png" alt="logo">
+
+    </a>
+    Programació d'Intel·ligència Artificial - CE Big Data i IA
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unitat 1. Introducció a la Programació
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Unitat 1. Introducció a la Programació
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../U01%20Introducci%C3%B3%20a%20la%20programaci%C3%B3/01_Algorismes_Llenguatges/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Algorismes i llenguatges
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../U01%20Introducci%C3%B3%20a%20la%20programaci%C3%B3/Exercici/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Exercici pràctic
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unitat 2. El llenguatge Python
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Unitat 2. El llenguatge Python
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../U02%20Python/01_Entorns_i_projectes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Preparació de l'entorn
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../U02%20Python/02_Tipus_Variables_Operadors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Tipus de Dades. Operadors
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../U02%20Python/03_Estructures_de_control/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Estructures de control
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../U02%20Python/04_Funcions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. Funcions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../U02%20Python/05_Estructures_de_dades/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. Estructures de dades
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../U02%20Python/06_POO/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. Programació orientada a objectes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../U02%20Python/07_Projecte/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7. Projecte
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../U02%20Python/08_ExerciciPreProjecte/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8. Exercici pre projecte guiat
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../U02%20Python/09_Tractament_de_fitxer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    9. Annex I - Tractament de fitxers i carpetes amb python
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unitat 3. Python aplicat al Big Data i Intel·ligencia Artificial
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Unitat 3. Python aplicat al Big Data i Intel·ligencia Artificial
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Teoria
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Teoria
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../U03%20Python%20aplicat%20al%20Big%20Data%20i%20Intel%C2%B7ligencia%20Artificial/0.%20Index/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Introducció
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../U03%20Python%20aplicat%20al%20Big%20Data%20i%20Intel%C2%B7ligencia%20Artificial/1.%20NumPy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Manipulació de Dades amb Numpy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../U03%20Python%20aplicat%20al%20Big%20Data%20i%20Intel%C2%B7ligencia%20Artificial/02_Pandas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Manipulació de Dades amb Pandas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../U03%20Python%20aplicat%20al%20Big%20Data%20i%20Intel%C2%B7ligencia%20Artificial/03_Matplotlib-Seaborn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. Visualització de dades amb Matplotlib i Seaborn
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../U03%20Python%20aplicat%20al%20Big%20Data%20i%20Intel%C2%B7ligencia%20Artificial/04_Sklearn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. Introducció al Machine Learning amb Scikit-Learn
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../U03%20Python%20aplicat%20al%20Big%20Data%20i%20Intel%C2%B7ligencia%20Artificial/05_Keras/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. Introducció al DeepLearning amb Keras
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../U03%20Python%20aplicat%20al%20Big%20Data%20i%20Intel%C2%B7ligencia%20Artificial/06_Reutilitzant_models/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7. Reutilizant models
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tasques
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Tasques
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2_1" id="__nav_3_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. NumPy
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    2. NumPy
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../U03%20Python%20aplicat%20al%20Big%20Data%20i%20Intel%C2%B7ligencia%20Artificial/exercicis/numpy/01_numpy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Activitats
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_1_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2_1_2" id="__nav_3_2_1_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Pràctiques
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_3_2_1_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2_1_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    2. Pràctiques
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../U03%20Python%20aplicat%20al%20Big%20Data%20i%20Intel%C2%B7ligencia%20Artificial/exercicis/numpy/02_mario/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Mario
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../U03%20Python%20aplicat%20al%20Big%20Data%20i%20Intel%C2%B7ligencia%20Artificial/exercicis/numpy/03_derivades/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Derivades
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../U03%20Python%20aplicat%20al%20Big%20Data%20i%20Intel%C2%B7ligencia%20Artificial/exercicis/numpy/04_vi/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Vi
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../U03%20Python%20aplicat%20al%20Big%20Data%20i%20Intel%C2%B7ligencia%20Artificial/exercicis/numpy/05_KNN/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. KNN
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../U03%20Python%20aplicat%20al%20Big%20Data%20i%20Intel%C2%B7ligencia%20Artificial/exercicis/numpy/Soroll_Impulsiu/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. Soroll Impulsiu
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../U03%20Python%20aplicat%20al%20Big%20Data%20i%20Intel%C2%B7ligencia%20Artificial/exercicis/numpy/06_sobel/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. Sobel
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2_2" id="__nav_3_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Pandas
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    3. Pandas
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2_2_1" id="__nav_3_2_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Activitats
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_3_2_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    1. Activitats
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../U03%20Python%20aplicat%20al%20Big%20Data%20i%20Intel%C2%B7ligencia%20Artificial/exercicis/pandas/01_creacio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Creacio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../U03%20Python%20aplicat%20al%20Big%20Data%20i%20Intel%C2%B7ligencia%20Artificial/exercicis/pandas/02_indexacio_seleccio_assignacio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Indexació, Selecció i Assignació
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../U03%20Python%20aplicat%20al%20Big%20Data%20i%20Intel%C2%B7ligencia%20Artificial/exercicis/pandas/03_resum_mapatge/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Resum i mapatge
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../U03%20Python%20aplicat%20al%20Big%20Data%20i%20Intel%C2%B7ligencia%20Artificial/exercicis/pandas/04_agrupament_i_ordenacio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. Agrupaments i ordenació
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../U03%20Python%20aplicat%20al%20Big%20Data%20i%20Intel%C2%B7ligencia%20Artificial/exercicis/pandas/05_tipus_de_dades_i_valors_nulls/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. Dades i valors nuls
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../U03%20Python%20aplicat%20al%20Big%20Data%20i%20Intel%C2%B7ligencia%20Artificial/exercicis/pandas/06_renombrat_i_combinacio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. Renombrat i combinació
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2_2_2" id="__nav_3_2_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Pràctiques
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_3_2_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    2. Pràctiques
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../U03%20Python%20aplicat%20al%20Big%20Data%20i%20Intel%C2%B7ligencia%20Artificial/exercicis/pandas/01_practica_vendes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Vendes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../U03%20Python%20aplicat%20al%20Big%20Data%20i%20Intel%C2%B7ligencia%20Artificial/exercicis/pandas/02_practica_dades_categoriques/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Dades categòriques
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2_3" id="__nav_3_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. Matplotlib i Seaborn
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    4. Matplotlib i Seaborn
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_3_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2_3_1" id="__nav_3_2_3_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Activitats
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_3_2_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    1. Activitats
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../U03%20Python%20aplicat%20al%20Big%20Data%20i%20Intel%C2%B7ligencia%20Artificial/exercicis/seaborn/01_linecharts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Gràfics de línies
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../U03%20Python%20aplicat%20al%20Big%20Data%20i%20Intel%C2%B7ligencia%20Artificial/exercicis/seaborn/02_bars_heatmaps/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Gràfics de barres i mapes de calor
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../U03%20Python%20aplicat%20al%20Big%20Data%20i%20Intel%C2%B7ligencia%20Artificial/exercicis/seaborn/03_scatters/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Gràfics de dispersió
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../U03%20Python%20aplicat%20al%20Big%20Data%20i%20Intel%C2%B7ligencia%20Artificial/exercicis/seaborn/04_distributions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. Distibucions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2_4" id="__nav_3_2_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. Sklearn
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    5. Sklearn
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_4_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2_4_1" id="__nav_3_2_4_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Activitats
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_3_2_4_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    1. Activitats
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../U03%20Python%20aplicat%20al%20Big%20Data%20i%20Intel%C2%B7ligencia%20Artificial/exercicis/sklearn/01_model/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Contrucció del model
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../U03%20Python%20aplicat%20al%20Big%20Data%20i%20Intel%C2%B7ligencia%20Artificial/exercicis/sklearn/02_validacio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Validació del model
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2_4_2" id="__nav_3_2_4_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Pràctiques
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_3_2_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    2. Pràctiques
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../U03%20Python%20aplicat%20al%20Big%20Data%20i%20Intel%C2%B7ligencia%20Artificial/exercicis/sklearn/03_comparacio_de_models/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Comparació de models
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../U03%20Python%20aplicat%20al%20Big%20Data%20i%20Intel%C2%B7ligencia%20Artificial/exercicis/sklearn/04_overfitting_underfitting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Ajust de models
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2_5" id="__nav_3_2_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. Keras
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    6. Keras
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_5_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2_5_1" id="__nav_3_2_5_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Activitats
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_3_2_5_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2_5_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    1. Activitats
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../U03%20Python%20aplicat%20al%20Big%20Data%20i%20Intel%C2%B7ligencia%20Artificial/exercicis/keras/01_underfitting_overfitting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Subajust i sobreajust - Parada anticipada
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../U03%20Python%20aplicat%20al%20Big%20Data%20i%20Intel%C2%B7ligencia%20Artificial/exercicis/keras/02_dropout/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Abandonament
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../U03%20Python%20aplicat%20al%20Big%20Data%20i%20Intel%C2%B7ligencia%20Artificial/exercicis/keras/03_batch_normalization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Normalització de lots
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_5_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2_5_2" id="__nav_3_2_5_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Pràctiques
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_3_2_5_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2_5_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    2. Pràctiques
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../U03%20Python%20aplicat%20al%20Big%20Data%20i%20Intel%C2%B7ligencia%20Artificial/exercicis/keras/04_regression/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Xarxes Neuronals - Regressió
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../U03%20Python%20aplicat%20al%20Big%20Data%20i%20Intel%C2%B7ligencia%20Artificial/exercicis/keras/05_classification/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Xarxes Neuronals - Classificació
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../U03%20Python%20aplicat%20al%20Big%20Data%20i%20Intel%C2%B7ligencia%20Artificial/exercicis/keras/06_sklearn_vs_keras/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Algoritmes clàssics front a xarxes neuronals
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../U03%20Python%20aplicat%20al%20Big%20Data%20i%20Intel%C2%B7ligencia%20Artificial/exercicis/keras/07_save_and_load/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. Guardat i càrrega de models
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unitat 4. Programació d'aplicacions
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Unitat 4. Programació d'aplicacions
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../U04%20Programaci%C3%B3%20d%27Aplicacions/1.%20Aplicacions%20clients%20amb%20Flet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Programació d'aplicacions client amb Flet
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../U04%20Programaci%C3%B3%20d%27Aplicacions/2.%20Contenidors%20de%20BBDD%20amb%20Docker/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Contenidors. Bases de Dades
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../U04%20Programaci%C3%B3%20d%27Aplicacions/3.%20Peticions%20HTTP.%20API-REST/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Peticions HTTP. API REST
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../U04%20Programaci%C3%B3%20d%27Aplicacions/4.%20Servidors%20amb%20Flask/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. Servidors amb Flask
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../U04%20Programaci%C3%B3%20d%27Aplicacions/5.%20Practiques/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. Pràctiques
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unitat 5. Programació d'aplicacions d'IA
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Unitat 5. Programació d'aplicacions d'IA
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../U05%20Programaci%C3%B3%20d%27Apps%20d%27IA/01_AzureTextAnalytics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Azure Text
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../U05%20Programaci%C3%B3%20d%27Apps%20d%27IA/02_FaceDetection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Azure Face
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../U05%20Programaci%C3%B3%20d%27Apps%20d%27IA/03_ComputerVision/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Computer Vision
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../U05%20Programaci%C3%B3%20d%27Apps%20d%27IA/04_Practiques/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. Pràctiques
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unitat 6. Convergència tecnològica
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Unitat 6. Convergència tecnològica
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01_OpenCV_Basic/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Computer Vision
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02_CapturarImatges/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Capturar imatges
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_6_3" id="__nav_6_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. YOLO
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    3. YOLO
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../0_Introduccio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Introducció
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1_Deteccio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Detecció d'objectes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2_Segmentacio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Segmentació d'objectes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3_Classificacio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. Classificació d'imatges
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4_Postura/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. Postures en imatges
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../5_OBB/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. Caixes de delimitació inclinades
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../6_Entrenament/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7. Entrenament de models
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8. Reconeixement facial
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8. Reconeixement facial
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Taula de continguts">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Taula de continguts
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-deteccio-de-cares" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Detecció de Cares
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-haarcascade" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. HaarCascade
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. HaarCascade">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-funcionament-basic-del-haar-cascade" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1. Funcionament bàsic del Haar Cascade:
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-cascade-cascada" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2. Cascade (Cascada)?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-implementacio-amb-opencv" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Implementació amb OpenCV:
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-treball-practic-reconeixement-facial" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Treball pràctic. Reconeixement facial
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-llibreria-face-recognition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Llibreria face-recognition
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-treballem-amb-la-llibreria-face_recognition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Treballem amb la llibreria face_recognition:
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Informació general
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Informació general
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../info/guia_didactica/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guia didàctica
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Taula de continguts">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Taula de continguts
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-deteccio-de-cares" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Detecció de Cares
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-haarcascade" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. HaarCascade
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. HaarCascade">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-funcionament-basic-del-haar-cascade" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1. Funcionament bàsic del Haar Cascade:
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-cascade-cascada" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2. Cascade (Cascada)?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-implementacio-amb-opencv" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Implementació amb OpenCV:
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-treball-practic-reconeixement-facial" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Treball pràctic. Reconeixement facial
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-llibreria-face-recognition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Llibreria face-recognition
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-treballem-amb-la-llibreria-face_recognition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Treballem amb la llibreria face_recognition:
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+  <h1>8. Reconeixement facial</h1>
+
+<h2 id="1-deteccio-de-cares">1. Detecció de Cares</h2>
+<p>Si volem detectar cares hauriem de entrenar un model de yolo per a aquesta tasca, però com que ja existeixen molts models preentrenats per a aquesta tasca, podem utilitzar un d'aquests models.</p>
+<p>Al següent repositori de GitHub podem trobar un model preentrenat per a la detecció de cares <a href="https://github.com/akanametov/yolo-face">https://github.com/akanametov/yolo-face</a></p>
+<blockquote>
+<p>Aquest repositori resulta molt interessant ja que ens ofereix no sols el model entrenat sinò el codi de com fer l'entrenament. A més a més te models entrenats per a detecció de  persones, treballadors, jugadors de futbol, drons, etc.</p>
+</blockquote>
+<!--
+
+## Haar Cascade i OpenCV 
+
+En aquest apartat vas a treballar en un **projecte autònom de detecció i reconeixement de rostres**.
+
+Aquest materials estan basat en el [següent tutorial](https://www.datacamp.com/tutorial/face-detection-python-opencv).
+
+-->
+<h2 id="2-haarcascade">2. HaarCascade</h2>
+<p>La detecció de rostres amb <code>Haar Cascade</code>és un mètode eficaç utilitzat en visió artificial i processament d’imatges. Proposat per <strong>Paul Viola</strong> i <strong>Michael Jones</strong> el 2001, aquest mètode es basa en classificadors en cascada entrenats amb funcions de Haar:</p>
+<ul>
+<li>Es necessita un conjunt d’imatges positives (rostres) i negatives (sense rostres) per entrenar el classificador.</li>
+<li>Les característiques de Haar són com nuclis convolucionals que s’apliquen a la imatge.</li>
+<li>Les imatges integrals simplifiquen el càlcul de característiques.</li>
+</ul>
+<p>Per sort podem trobar models de classificació entrenats ja a <a href="https://github.com/opencv/opencv/tree/master/data/haarcascades">https://github.com/opencv/opencv/tree/master/data/haarcascades</a></p>
+<h3 id="21-funcionament-basic-del-haar-cascade">2.1. Funcionament bàsic del Haar Cascade:</h3>
+<p>En lloc d'analitzar cada píxel individualment (el qual seria lentíssim), l'algoritme utilitza característiques de <strong>Haar</strong>. Aquestes són essencialment "finestres" amb quadrats blancs i negres que es desplacen sobre la imatge. L'algoritme busca contrastos de llum i ombra.</p>
+<p><strong>Exemple en una cara</strong>: La regió dels ulls sol ser més fosca que la part superior de les galta, i el pont de la nasal és més clar que els costats. L'algoritme busca aquests patrons específics.</p>
+<h3 id="22-cascade-cascada">2.2. <code>Cascade</code> (Cascada)?</h3>
+<p>Es diu així per eficiència. Imagina que tens una foto d'un paisatge i busques una cara:</p>
+<ul>
+<li>La imatge es divideix en milers de petites finestres.</li>
+<li><strong>La Cascada:</strong> L'algoritme aplica una sèrie de filtres ràpids. Si una finestra no té res que s'assembli a un ull (fase 1), es descarta de seguida.</li>
+<li>Si passa la primera prova, passa a la segona, i després a la tercera... així fins a completar centenars d'etapes.</li>
+</ul>
+<p><strong>Resultat:</strong> No perd temps processant el fons (el cel, arbres, etc.) i es concentra només on realment hi ha trets humans.</p>
+<h2 id="3-implementacio-amb-opencv">3. Implementació amb OpenCV:</h2>
+<p>OpenCV proporciona un classificador preentrenat per a la detecció de rostres mitjançant Haar Cascade. Pots utilitzar-lo amb la funció <code>cv2.CascadeClassifier</code>.
+Existeixen diferents classificadors, com a ulls, somriures i fins i tot matrícules de cotxe. Pots trobar-los a la carpeta <code>data/haarcascades</code> dins de la instal·lació d'OpenCV i al repositori de GitHub d'OpenCV <a href="https://github.com/opencv/opencv/tree/master/data/haarcascades">https://github.com/opencv/opencv/tree/master/data/haarcascades</a>.</p>
+<p>El següent codi comentat mostra com es fa la detecció</p>
+<details class="example" open="open">
+<summary>Funcionament del classificador amb Python</summary>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-0-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-0-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-0-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-0-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-0-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-0-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-0-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-0-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-0-10">10</a></span>
+<span class="normal"><a href="#__codelineno-0-11">11</a></span>
+<span class="normal"><a href="#__codelineno-0-12">12</a></span>
+<span class="normal"><a href="#__codelineno-0-13">13</a></span>
+<span class="normal"><a href="#__codelineno-0-14">14</a></span>
+<span class="normal"><a href="#__codelineno-0-15">15</a></span>
+<span class="normal"><a href="#__codelineno-0-16">16</a></span>
+<span class="normal"><a href="#__codelineno-0-17">17</a></span>
+<span class="normal"><a href="#__codelineno-0-18">18</a></span>
+<span class="normal"><a href="#__codelineno-0-19">19</a></span>
+<span class="normal"><a href="#__codelineno-0-20">20</a></span>
+<span class="normal"><a href="#__codelineno-0-21">21</a></span>
+<span class="normal"><a href="#__codelineno-0-22">22</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">cv2</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2"></a>
+<a id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="c1"># Carrega el classificador preentrenat</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4"></a><span class="n">face_cascade</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CascadeClassifier</span><span class="p">(</span><span class="n">cv2</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">haarcascades</span> <span class="o">+</span> <span class="s1">&#39;haarcascade_frontalface_default.xml&#39;</span><span class="p">)</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5"></a>
+<a id="__codelineno-0-6" name="__codelineno-0-6"></a><span class="c1"># Llegeix la imatge i convertim a gris per rendiment</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7"></a><span class="n">img</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s1">&#39;imatge.jpg&#39;</span><span class="p">)</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8"></a><span class="n">gray</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2GRAY</span><span class="p">)</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9"></a>
+<a id="__codelineno-0-10" name="__codelineno-0-10"></a><span class="c1"># Detecta rostres</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11"></a><span class="n">faces</span> <span class="o">=</span> <span class="n">face_cascade</span><span class="o">.</span><span class="n">detectMultiScale</span><span class="p">(</span><span class="n">gray</span><span class="p">,</span> <span class="n">scaleFactor</span><span class="o">=</span><span class="mf">1.1</span><span class="p">,</span> <span class="n">minNeighbors</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12"></a>
+<a id="__codelineno-0-13" name="__codelineno-0-13"></a><span class="c1"># faces és una llista de coordenades (x, y, w, h) per a cada cara detectada</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14"></a>
+<a id="__codelineno-0-15" name="__codelineno-0-15"></a><span class="c1"># Dibuixa rectangles al voltant dels rostres detectats</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16"></a><span class="k">for</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">h</span><span class="p">)</span> <span class="ow">in</span> <span class="n">faces</span><span class="p">:</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17"></a>    <span class="n">cv2</span><span class="o">.</span><span class="n">rectangle</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">w</span><span class="p">,</span> <span class="n">y</span> <span class="o">+</span> <span class="n">h</span><span class="p">),</span> <span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">2</span><span class="p">)</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18"></a>
+<a id="__codelineno-0-19" name="__codelineno-0-19"></a><span class="c1"># Mostra la imatge amb els rostres detectats</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20"></a><span class="n">cv2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="s1">&#39;Rostres detectats&#39;</span><span class="p">,</span> <span class="n">img</span><span class="p">)</span>
+<a id="__codelineno-0-21" name="__codelineno-0-21"></a><span class="n">cv2</span><span class="o">.</span><span class="n">waitKey</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<a id="__codelineno-0-22" name="__codelineno-0-22"></a><span class="n">cv2</span><span class="o">.</span><span class="n">destroyAllWindows</span><span class="p">()</span>
+</code></pre></div></td></tr></table></div>
+</details>
+<p>Alguns paràmtres de la crida a <code>detectMultiScale</code>:</p>
+<ol>
+<li>
+<p><strong><code>gray_image</code></strong> - La imatge on busquem les cares.</p>
+<ul>
+<li>L'algoritme de Haar Cascade no necessita color. De fet, el color el confon i el fa més lent.</li>
+<li><strong>Requisit:</strong> Ha de ser una imatge en escala de grises (8-bit).</li>
+<li><strong>Per què:</strong> L'algoritme busca contrastos d'intensitat (brillantor), no matisos de blau o vermell.</li>
+</ul>
+</li>
+<li>
+<p><strong><code>scaleFactor</code> (1.1)</strong> - Paràmetre de compensació d'escala.</p>
+<ul>
+<li>Com una cara pot estar a prop de la càmera (gran) o lluny (petita), l'algoritme redimensiona la imatge diverses vegades per intentar trobar-la.</li>
+<li><strong>Què fa l'1.1?:</strong> Indica que la imatge es redueix un 10% en cada pas d'escala.</li>
+<li><strong>Valors típics:</strong></li>
+<li>1.05: Molt lent però molt precís (detecta cares a moltes distàncies).</li>
+<li>1.1 a 1.3: Equilibri estàndard entre velocitat i precisió.</li>
+<li>1.5+: Molt ràpid, però pot "saltar-se" cares que no encaixint exactament en aquests tamanys.</li>
+</ul>
+</li>
+<li>
+<p><strong><code>minNeighbors</code> (5)</strong> - Filtre de qualitat.</p>
+<ul>
+<li>Controla quants "rectangles candidats" han de detectar-se a prop d'un objecte perquè l'algoritme digui: "Sí, això és una cara".</li>
+<li><strong>Funcionament:</strong> L'algoritme solen trobar moltes deteccions falses. Si poses un 5, li estàs dient: "Només confía si almenys 5 finestres diferents coincideixen que aquí hi ha una cara".</li>
+<li><strong>Efecte:</strong></li>
+<li>Baix (3): Detecta moltes cares, però també molts objectes que no ho són (falsos positius).</li>
+<li>Alt (10+): Molt selectiu. Només detecta cares molt clares, però pot ignorar-ne algunes si la il·luminació no és perfecta.</li>
+</ul>
+</li>
+<li>
+<p><strong><code>minSize=(40, 40)</code></strong> - Tamany mínim.</p>
+<ul>
+<li>Estableix el tamany més petit (en píxels) en el qual una cara pot ser detectada.</li>
+<li><strong>Utilitat:</strong> Si saps que l'usuari no estarà a 10 metres de la càmera, no té sentit buscar quadrets de 10x10 píxels.</li>
+<li><strong>Benefici:</strong> Estalvia molta capacitat de processament i evita que el soroll del fons (punts petits) es confongui amb rostres.</li>
+</ul>
+</li>
+</ol>
+<h2 id="4-treball-practic-reconeixement-facial">4. Treball pràctic. Reconeixement facial</h2>
+<p>Anem a fer una pràctica de reconeixemnet facial. Possibles cassos d'ús d'aquest projecte serien:</p>
+<ul>
+<li>Accés a la feina, treball</li>
+<li>Control d'assistència</li>
+<li>Detecció de gent no autoritzada</li>
+</ul>
+<h2 id="5-llibreria-face-recognition">5. Llibreria face-recognition</h2>
+<p>La llibreria <code>face_recognition</code> és una eina de reconeixement facial en Python que utilitza la tecnologia de deep learning per identificar i verificar rostres en imatges i vídeos. Aquesta llibreria es basa en el model de reconeixement facial d'OpenFace, que és un model de xarxa neuronal convolucional entrenat per reconèixer rostres amb alta precisió. Ens respon a "De qui és esta cara?".</p>
+<p>El procés de reconeixement facial amb <code>face_recognition</code> es pot dividir en quatre passos principals:</p>
+<ol>
+<li><strong>Detecció i Alineació (Pre-processat)</strong> Abans de reconèixer algú, hem de trobar la cara i "posar-la recta".</li>
+<li><strong>Detecció</strong>: Es localitza la cara (normalment amb els mètodes que hem vist abans).</li>
+<li><strong>Alineació</strong>: Si la persona té el cap una mica inclinat, l'algoritme busca punts de referència (ulls, nas, boca) i rota la imatge perquè els ulls estiguin sempre en la mateixa posició horitzontal. Això facilita molt la comparació posterior.</li>
+<li><strong>Extracció de Característiques (Deep Metric Learning)</strong> Aquesta és la part més important. No guardem la foto de la persona, sinó una <em>signatura digital</em>. Es passa la imatge per una xarxa neuronal (com FaceNet o ResNet). La xarxa analitza mides: la distància entre els ulls, l'amplada del nas, la profunditat de la mandíbula, etc. El resultat: Una llista de 128 (o 512) números decimals. Això s'anomena <strong>Embedding o vector de característiques</strong>.</li>
+</ol>
+<blockquote>
+<p>Concepte clau: Un embedding és una representació numèrica on cares de la mateixa persona generen números similars, i cares de persones diferents generen números molt distants.</p>
+</blockquote>
+<ol>
+<li>L'entrenament amb <strong>Triplet Loss</strong> Com sap la xarxa neuronal quins números assignar? Durant el seu entrenament s'utilitza una tècnica anomenada Triplet Loss: Es tria una foto d'una persona (<strong>Anchor</strong>). Es tria una altra foto de la mateixa persona (<strong>Positive</strong>). Es tria una foto d'una persona diferent (<strong>Negative</strong>). L'algoritme s'ajusta fins que la distància matemàtica entre Anchor i Positive és mínima, i la distància amb el Negative és màxima. (Aquesta part ja la tindrem feta, ja que utilitzarem un model preentrenat).</li>
+<li>Comparació (<strong>Classification</strong>) Un cop tens el vector de números de la cara desconeguda, el compares amb la teva base de dades: Es calcula la distància euclidiana (la línia recta en un espai multidimensional) entre el vector nou i els que ja tens guardats. Si la distància és menor a un llindar "És un match!".</li>
+</ol>
+<h2 id="6-treballem-amb-la-llibreria-face_recognition">6. Treballem amb la llibreria <code>face_recognition</code>:</h2>
+<p>Primer de tot, hem d'instal·lar la llibreria:</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a>pip<span class="w"> </span>install<span class="w"> </span>face_recognition
+</code></pre></div></td></tr></table></div>
+<p>Sols pel fet de carregar la llibreria no tenim prou, ja que necessitem els models preentrenats. Malauradament, la llibreria <strong>no</strong> els inclou, així que  cal descarregar-los amb:</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a>pip<span class="w"> </span>install<span class="w"> </span>git+https://github.com/ageitgey/face_recognition_models
+</code></pre></div></td></tr></table></div>
+<p>Això baixarà els models al teu entorn a <code>.venv/lib/python3.10/site-packages/face_recognition_models/models/</code>. Què estàs instal·lant exactament?</p>
+<ul>
+<li><strong>HOG Face Detector</strong>: El model que localitza on són les cares.</li>
+<li><strong>68-point Face Landmark Predictor</strong>: El que troba els punts dels ulls, celles, etc., per poder alinear la cara.</li>
+<li><strong>Face Recognition Model</strong>: La xarxa neuronal ja entrenada que sap convertir una cara en el vector de 128 números (embedding).</li>
+<li><strong>CNN Face Detector</strong>: Una versió més lenta però més precisa basada en Deep Learning.</li>
+</ul>
+<p>Al nostre programa podem utilitzar la llibreria per a detectar i reconèixer cares. Aquí tens un exemple bàsic de com utilitzar-la. Veurem un bloc de codi comentat que detecta i reconeix cares en una imatge:</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-3-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-3-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-3-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-3-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-3-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-3-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-3-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-3-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-3-10">10</a></span>
+<span class="normal"><a href="#__codelineno-3-11">11</a></span>
+<span class="normal"><a href="#__codelineno-3-12">12</a></span>
+<span class="normal"><a href="#__codelineno-3-13">13</a></span>
+<span class="normal"><a href="#__codelineno-3-14">14</a></span>
+<span class="normal"><a href="#__codelineno-3-15">15</a></span>
+<span class="normal"><a href="#__codelineno-3-16">16</a></span>
+<span class="normal"><a href="#__codelineno-3-17">17</a></span>
+<span class="normal"><a href="#__codelineno-3-18">18</a></span>
+<span class="normal"><a href="#__codelineno-3-19">19</a></span>
+<span class="normal"><a href="#__codelineno-3-20">20</a></span>
+<span class="normal"><a href="#__codelineno-3-21">21</a></span>
+<span class="normal"><a href="#__codelineno-3-22">22</a></span>
+<span class="normal"><a href="#__codelineno-3-23">23</a></span>
+<span class="normal"><a href="#__codelineno-3-24">24</a></span>
+<span class="normal"><a href="#__codelineno-3-25">25</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">face_recognition</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">cv2</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3"></a>
+<a id="__codelineno-3-4" name="__codelineno-3-4"></a><span class="c1"># Carrega la imatge on volem detectar i reconèixer cares</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5"></a><span class="n">image</span> <span class="o">=</span> <span class="n">face_recognition</span><span class="o">.</span><span class="n">load_image_file</span><span class="p">(</span><span class="s2">&quot;cara_a_descubrir.jpg&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6"></a>
+<a id="__codelineno-3-7" name="__codelineno-3-7"></a><span class="c1"># Detecta les ubicacions de les cares a la imatge</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8"></a><span class="n">face_locations</span> <span class="o">=</span> <span class="n">face_recognition</span><span class="o">.</span><span class="n">face_locations</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9"></a>
+<a id="__codelineno-3-10" name="__codelineno-3-10"></a><span class="c1"># Carrega la imatge de referència (la persona que volem reconèixer)</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11"></a><span class="n">known_image</span> <span class="o">=</span> <span class="n">face_recognition</span><span class="o">.</span><span class="n">load_image_file</span><span class="p">(</span><span class="s2">&quot;persona_conocida.jpg&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12"></a>
+<a id="__codelineno-3-13" name="__codelineno-3-13"></a><span class="c1"># Obté l&#39;embedding de la cara coneguda</span>
+<a id="__codelineno-3-14" name="__codelineno-3-14"></a><span class="n">known_face_encoding</span> <span class="o">=</span> <span class="n">face_recognition</span><span class="o">.</span><span class="n">face_encodings</span><span class="p">(</span><span class="n">known_image</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<a id="__codelineno-3-15" name="__codelineno-3-15"></a>
+<a id="__codelineno-3-16" name="__codelineno-3-16"></a><span class="c1"># Obté els embeddings de les cares detectades a la imatge</span>
+<a id="__codelineno-3-17" name="__codelineno-3-17"></a><span class="n">unknown_face_encodings</span> <span class="o">=</span> <span class="n">face_recognition</span><span class="o">.</span><span class="n">face_encodings</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">face_locations</span><span class="p">)</span>
+<a id="__codelineno-3-18" name="__codelineno-3-18"></a>
+<a id="__codelineno-3-19" name="__codelineno-3-19"></a><span class="c1"># Compara les cares detectades amb la cara coneguda</span>
+<a id="__codelineno-3-20" name="__codelineno-3-20"></a><span class="k">for</span> <span class="n">unknown_face_encoding</span> <span class="ow">in</span> <span class="n">unknown_face_encodings</span><span class="p">:</span>
+<a id="__codelineno-3-21" name="__codelineno-3-21"></a>    <span class="n">results</span> <span class="o">=</span> <span class="n">face_recognition</span><span class="o">.</span><span class="n">compare_faces</span><span class="p">([</span><span class="n">known_face_encoding</span><span class="p">],</span> <span class="n">unknown_face_encoding</span><span class="p">)</span>
+<a id="__codelineno-3-22" name="__codelineno-3-22"></a>    <span class="k">if</span> <span class="n">results</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+<a id="__codelineno-3-23" name="__codelineno-3-23"></a>        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;¡Cara reconocida!&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-24" name="__codelineno-3-24"></a>    <span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-3-25" name="__codelineno-3-25"></a>        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Cara no reconocida.&quot;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p>Anem a estudiar amb més detall els elements que ens retonene els mètodes de la llibreria per veure que podem fer amb ells:</p>
+<ul>
+<li><code>face_locations = face_recognition.face_locations(image)</code> aquesta línia retorna una llista de coordenades (top, right, bottom, left) per a cada cara detectada a la imatge. Aquestes coordenades indiquen la posició de cada cara dins de la imatge. Son les ja conegudes Bounding Boxes. Amb aixo podriem dibuixar rectangles al voltant de les cares detectades.</li>
+<li><code>known_face_encoding = face_recognition.face_encodings(known_image)[0]</code> aquesta línia retorna un vector de 128 números (embedding) que representa les característiques úniques de la cara coneguda. Aquest vector és el que utilitzarem per comparar amb les cares detectades a la imatge.</li>
+<li><code>unknown_face_encodings = face_recognition.face_encodings(image, face_locations)</code> aquesta línia retorna una llista de vectors de 128 números (embeddings) per a cada cara detectada a la imatge. Cada vector representa les característiques úniques de cada cara detectada.</li>
+<li><code>results = face_recognition.compare_faces([known_face_encoding], unknown_face_encoding)</code> aquesta línia compara el vector de la cara coneguda amb el vector de la cara detectada i retorna una llista de valors booleans. Si el valor és <code>True</code>, significa que la cara detectada coincideix amb la cara coneguda, i si és <code>False</code>, significa que no coincideixen.</li>
+</ul>
+<p>Resulta molt interessant si tenim una base de dades amb els embeddings de les cares conegudes, ja que podríem comparar cada cara detectada amb tots els embeddings de la base de dades per veure si hi ha alguna coincidència. Això ens permetria reconèixer múltiples persones en una sola imatge. </p>
+<p>Seria una cosa com aquesta. Primerament imagina que em carregat les imatges de n persones i hem obtingut els seus embeddings. Podriem guardar aquests embeddings en un diccionari on la clau sigui el nom de la persona i el valor sigui l'embedding corresponent. Després, quan detectem cares a una nova imatge, podríem comparar cada cara detectada amb tots els embeddings del diccionari per veure si hi ha alguna coincidència.</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span>
+<span class="normal"><a href="#__codelineno-4-2">2</a></span>
+<span class="normal"><a href="#__codelineno-4-3">3</a></span>
+<span class="normal"><a href="#__codelineno-4-4">4</a></span>
+<span class="normal"><a href="#__codelineno-4-5">5</a></span>
+<span class="normal"><a href="#__codelineno-4-6">6</a></span>
+<span class="normal"><a href="#__codelineno-4-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="n">cares_conegudes</span> <span class="o">=</span> <span class="p">{</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2"></a>    <span class="s2">&quot;persona1&quot;</span><span class="p">:</span> <span class="n">known_face_encoding1</span><span class="p">,</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3"></a>    <span class="s2">&quot;persona2&quot;</span><span class="p">:</span> <span class="n">known_face_encoding2</span><span class="p">,</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4"></a>    <span class="s2">&quot;persona3&quot;</span><span class="p">:</span> <span class="n">known_face_encoding3</span><span class="p">,</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5"></a>    <span class="c1"># ...</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6"></a>    <span class="s2">&quot;persona_n&quot;</span><span class="p">:</span> <span class="n">known_face_encoding3</span><span class="p">,</span>    
+<a id="__codelineno-4-7" name="__codelineno-4-7"></a><span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<p>Ara hem de llegir la imatge que volem analitar i detectar les cares que hi ha a la imatge. Un cop tenim les cares detectades, obtenim els seus embeddings i els comparem amb els embeddings de les cares conegudes per veure si hi ha alguna coincidència.</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-5-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-5-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-5-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-5-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-5-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-5-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-5-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-5-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-5-10">10</a></span>
+<span class="normal"><a href="#__codelineno-5-11">11</a></span>
+<span class="normal"><a href="#__codelineno-5-12">12</a></span>
+<span class="normal"><a href="#__codelineno-5-13">13</a></span>
+<span class="normal"><a href="#__codelineno-5-14">14</a></span>
+<span class="normal"><a href="#__codelineno-5-15">15</a></span>
+<span class="normal"><a href="#__codelineno-5-16">16</a></span>
+<span class="normal"><a href="#__codelineno-5-17">17</a></span>
+<span class="normal"><a href="#__codelineno-5-18">18</a></span>
+<span class="normal"><a href="#__codelineno-5-19">19</a></span>
+<span class="normal"><a href="#__codelineno-5-20">20</a></span>
+<span class="normal"><a href="#__codelineno-5-21">21</a></span>
+<span class="normal"><a href="#__codelineno-5-22">22</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="n">imatge</span> <span class="o">=</span> <span class="n">face_recognition</span><span class="o">.</span><span class="n">load_image_file</span><span class="p">(</span><span class="s2">&quot;imatge_a_analitzar.jpg&quot;</span><span class="p">)</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2"></a>
+<a id="__codelineno-5-3" name="__codelineno-5-3"></a><span class="c1"># detectem totes les cares de la imatge</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4"></a><span class="n">face_locations</span> <span class="o">=</span> <span class="n">face_recognition</span><span class="o">.</span><span class="n">face_locations</span><span class="p">(</span><span class="n">imatge</span><span class="p">)</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5"></a>
+<a id="__codelineno-5-6" name="__codelineno-5-6"></a><span class="c1"># per a cada cara detectada</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7"></a><span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">face_location</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">face_locations</span><span class="p">):</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8"></a>
+<a id="__codelineno-5-9" name="__codelineno-5-9"></a>    <span class="c1"># obtenim el embedding de una cara detectada</span>
+<a id="__codelineno-5-10" name="__codelineno-5-10"></a>    <span class="n">face_encoding_desconeguda</span> <span class="o">=</span> <span class="n">face_recognition</span><span class="o">.</span><span class="n">face_encodings</span><span class="p">(</span><span class="n">imatge</span><span class="p">,</span> <span class="p">[</span><span class="n">face_location</span><span class="p">])[</span><span class="mi">0</span><span class="p">]</span>
+<a id="__codelineno-5-11" name="__codelineno-5-11"></a>
+<a id="__codelineno-5-12" name="__codelineno-5-12"></a>    <span class="c1"># comparem el embedding de la cara detectada amb els embeddings de les cares conegudes</span>
+<a id="__codelineno-5-13" name="__codelineno-5-13"></a>    <span class="n">matches</span> <span class="o">=</span> <span class="n">face_recognition</span><span class="o">.</span><span class="n">compare_faces</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">encodings</span><span class="o">.</span><span class="n">values</span><span class="p">()),</span> <span class="n">face_encoding_desconeguda</span><span class="p">)</span>
+<a id="__codelineno-5-14" name="__codelineno-5-14"></a>
+<a id="__codelineno-5-15" name="__codelineno-5-15"></a>    <span class="c1"># matches serà un array de boolenas per a cada persona de la BBDD. Si algun es true és que hem detectat algo</span>
+<a id="__codelineno-5-16" name="__codelineno-5-16"></a>    <span class="k">if</span> <span class="kc">True</span> <span class="ow">in</span> <span class="n">matches</span><span class="p">:</span>
+<a id="__codelineno-5-17" name="__codelineno-5-17"></a>        <span class="c1"># obtenim el nom de la persona que coincideix</span>
+<a id="__codelineno-5-18" name="__codelineno-5-18"></a>        <span class="n">match_index</span> <span class="o">=</span> <span class="n">matches</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<a id="__codelineno-5-19" name="__codelineno-5-19"></a>        <span class="n">nom_persona</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">encodings</span><span class="o">.</span><span class="n">keys</span><span class="p">())[</span><span class="n">match_index</span><span class="p">]</span>
+<a id="__codelineno-5-20" name="__codelineno-5-20"></a>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Cara reconocida: </span><span class="si">{</span><span class="n">nom_persona</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-5-21" name="__codelineno-5-21"></a>    <span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-5-22" name="__codelineno-5-22"></a>        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Cara no reconocida.&quot;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<!--
+
+## llibreria mediapipe
+
+## 2.1. Sistema-de-reconocimiento-facial-y-Liveness
+
+<https://github.com/AprendeIngenia/Sistema-de-reconocimiento-facial-y-Liveness>
+
+
+Video 1
+
+<https://www.youtube.com/watch?v=ut2jSVonUbM>
+
+
+
+## 2.2. Botiga intel·ligent
+
+<https://github.com/AprendeIngenia/Shopping-AI>
+
+Models descarregables de:
+https://huggingface.co/AprendeIngenia
+
+## 2.3. Detecció de Cara, Edad i sexe 
+
+Aquest REPO te models entrenats ja
+<https://github.com/smahesh29/Gender-and-Age-Detection/tree/master>
+
+amb els datasets de 
+<https://talhassner.github.io/home/projects/Adience/Adience-data.html>
+
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["content.code.copy", "content.code.select", "content.code.annotate"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiat al porta-retalls", "clipboard.copy": "C\u00f2pia al porta-retalls", "search.result.more.one": "1 m\u00e9s en aquesta p\u00e0gina", "search.result.more.other": "# m\u00e9s en aquesta p\u00e0gina", "search.result.none": "Cap document coincideix", "search.result.one": "1 document coincident", "search.result.other": "# documents coincidents", "search.result.placeholder": "Escriu per a comen\u00e7ar a cercar", "search.result.term.missing": "Desaparegut", "select.version": "Selecciona la versi\u00f3"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

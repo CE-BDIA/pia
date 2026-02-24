@@ -1,0 +1,4531 @@
+
+<!doctype html>
+<html lang="ca" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../5_OBB/">
+      
+      
+        <link rel="next" href="../7_Reconeixement_Cares/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../img/jaume.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>7. Entrenament de models - Programació d'Intel·ligència Artificial - CE Big Data i IA</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#1-entrenament-del-model" class="md-skip">
+          Salta el contingut
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Capçalera">
+    <a href="../../.." title="Programació d&#39;Intel·ligència Artificial - CE Big Data i IA" class="md-header__button md-logo" aria-label="Programació d'Intel·ligència Artificial - CE Big Data i IA" data-md-component="logo">
+      
+  <img src="../../../img/jaume.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Programació d'Intel·ligència Artificial - CE Big Data i IA
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              7. Entrenament de models
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Cerca" placeholder="Cerca" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Cerca">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Neteja" aria-label="Neteja" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicialitzant cerca
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegació" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Programació d&#39;Intel·ligència Artificial - CE Big Data i IA" class="md-nav__button md-logo" aria-label="Programació d'Intel·ligència Artificial - CE Big Data i IA" data-md-component="logo">
+      
+  <img src="../../../img/jaume.png" alt="logo">
+
+    </a>
+    Programació d'Intel·ligència Artificial - CE Big Data i IA
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unitat 1. Introducció a la Programació
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Unitat 1. Introducció a la Programació
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../U01%20Introducci%C3%B3%20a%20la%20programaci%C3%B3/01_Algorismes_Llenguatges/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Algorismes i llenguatges
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../U01%20Introducci%C3%B3%20a%20la%20programaci%C3%B3/Exercici/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Exercici pràctic
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unitat 2. El llenguatge Python
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Unitat 2. El llenguatge Python
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../U02%20Python/01_Entorns_i_projectes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Preparació de l'entorn
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../U02%20Python/02_Tipus_Variables_Operadors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Tipus de Dades. Operadors
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../U02%20Python/03_Estructures_de_control/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Estructures de control
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../U02%20Python/04_Funcions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. Funcions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../U02%20Python/05_Estructures_de_dades/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. Estructures de dades
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../U02%20Python/06_POO/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. Programació orientada a objectes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../U02%20Python/07_Projecte/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7. Projecte
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../U02%20Python/08_ExerciciPreProjecte/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8. Exercici pre projecte guiat
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../U02%20Python/09_Tractament_de_fitxer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    9. Annex I - Tractament de fitxers i carpetes amb python
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unitat 3. Python aplicat al Big Data i Intel·ligencia Artificial
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Unitat 3. Python aplicat al Big Data i Intel·ligencia Artificial
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Teoria
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Teoria
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../U03%20Python%20aplicat%20al%20Big%20Data%20i%20Intel%C2%B7ligencia%20Artificial/0.%20Index/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Introducció
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../U03%20Python%20aplicat%20al%20Big%20Data%20i%20Intel%C2%B7ligencia%20Artificial/1.%20NumPy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Manipulació de Dades amb Numpy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../U03%20Python%20aplicat%20al%20Big%20Data%20i%20Intel%C2%B7ligencia%20Artificial/02_Pandas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Manipulació de Dades amb Pandas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../U03%20Python%20aplicat%20al%20Big%20Data%20i%20Intel%C2%B7ligencia%20Artificial/03_Matplotlib-Seaborn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. Visualització de dades amb Matplotlib i Seaborn
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../U03%20Python%20aplicat%20al%20Big%20Data%20i%20Intel%C2%B7ligencia%20Artificial/04_Sklearn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. Introducció al Machine Learning amb Scikit-Learn
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../U03%20Python%20aplicat%20al%20Big%20Data%20i%20Intel%C2%B7ligencia%20Artificial/05_Keras/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. Introducció al DeepLearning amb Keras
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../U03%20Python%20aplicat%20al%20Big%20Data%20i%20Intel%C2%B7ligencia%20Artificial/06_Reutilitzant_models/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7. Reutilizant models
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tasques
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Tasques
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2_1" id="__nav_3_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. NumPy
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    2. NumPy
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../U03%20Python%20aplicat%20al%20Big%20Data%20i%20Intel%C2%B7ligencia%20Artificial/exercicis/numpy/01_numpy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Activitats
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_1_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2_1_2" id="__nav_3_2_1_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Pràctiques
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_3_2_1_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2_1_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    2. Pràctiques
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../U03%20Python%20aplicat%20al%20Big%20Data%20i%20Intel%C2%B7ligencia%20Artificial/exercicis/numpy/02_mario/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Mario
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../U03%20Python%20aplicat%20al%20Big%20Data%20i%20Intel%C2%B7ligencia%20Artificial/exercicis/numpy/03_derivades/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Derivades
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../U03%20Python%20aplicat%20al%20Big%20Data%20i%20Intel%C2%B7ligencia%20Artificial/exercicis/numpy/04_vi/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Vi
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../U03%20Python%20aplicat%20al%20Big%20Data%20i%20Intel%C2%B7ligencia%20Artificial/exercicis/numpy/05_KNN/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. KNN
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../U03%20Python%20aplicat%20al%20Big%20Data%20i%20Intel%C2%B7ligencia%20Artificial/exercicis/numpy/Soroll_Impulsiu/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. Soroll Impulsiu
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../U03%20Python%20aplicat%20al%20Big%20Data%20i%20Intel%C2%B7ligencia%20Artificial/exercicis/numpy/06_sobel/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. Sobel
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2_2" id="__nav_3_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Pandas
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    3. Pandas
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2_2_1" id="__nav_3_2_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Activitats
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_3_2_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    1. Activitats
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../U03%20Python%20aplicat%20al%20Big%20Data%20i%20Intel%C2%B7ligencia%20Artificial/exercicis/pandas/01_creacio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Creacio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../U03%20Python%20aplicat%20al%20Big%20Data%20i%20Intel%C2%B7ligencia%20Artificial/exercicis/pandas/02_indexacio_seleccio_assignacio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Indexació, Selecció i Assignació
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../U03%20Python%20aplicat%20al%20Big%20Data%20i%20Intel%C2%B7ligencia%20Artificial/exercicis/pandas/03_resum_mapatge/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Resum i mapatge
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../U03%20Python%20aplicat%20al%20Big%20Data%20i%20Intel%C2%B7ligencia%20Artificial/exercicis/pandas/04_agrupament_i_ordenacio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. Agrupaments i ordenació
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../U03%20Python%20aplicat%20al%20Big%20Data%20i%20Intel%C2%B7ligencia%20Artificial/exercicis/pandas/05_tipus_de_dades_i_valors_nulls/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. Dades i valors nuls
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../U03%20Python%20aplicat%20al%20Big%20Data%20i%20Intel%C2%B7ligencia%20Artificial/exercicis/pandas/06_renombrat_i_combinacio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. Renombrat i combinació
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2_2_2" id="__nav_3_2_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Pràctiques
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_3_2_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    2. Pràctiques
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../U03%20Python%20aplicat%20al%20Big%20Data%20i%20Intel%C2%B7ligencia%20Artificial/exercicis/pandas/01_practica_vendes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Vendes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../U03%20Python%20aplicat%20al%20Big%20Data%20i%20Intel%C2%B7ligencia%20Artificial/exercicis/pandas/02_practica_dades_categoriques/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Dades categòriques
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2_3" id="__nav_3_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. Matplotlib i Seaborn
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    4. Matplotlib i Seaborn
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_3_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2_3_1" id="__nav_3_2_3_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Activitats
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_3_2_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    1. Activitats
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../U03%20Python%20aplicat%20al%20Big%20Data%20i%20Intel%C2%B7ligencia%20Artificial/exercicis/seaborn/01_linecharts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Gràfics de línies
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../U03%20Python%20aplicat%20al%20Big%20Data%20i%20Intel%C2%B7ligencia%20Artificial/exercicis/seaborn/02_bars_heatmaps/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Gràfics de barres i mapes de calor
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../U03%20Python%20aplicat%20al%20Big%20Data%20i%20Intel%C2%B7ligencia%20Artificial/exercicis/seaborn/03_scatters/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Gràfics de dispersió
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../U03%20Python%20aplicat%20al%20Big%20Data%20i%20Intel%C2%B7ligencia%20Artificial/exercicis/seaborn/04_distributions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. Distibucions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2_4" id="__nav_3_2_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. Sklearn
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    5. Sklearn
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_4_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2_4_1" id="__nav_3_2_4_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Activitats
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_3_2_4_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    1. Activitats
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../U03%20Python%20aplicat%20al%20Big%20Data%20i%20Intel%C2%B7ligencia%20Artificial/exercicis/sklearn/01_model/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Contrucció del model
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../U03%20Python%20aplicat%20al%20Big%20Data%20i%20Intel%C2%B7ligencia%20Artificial/exercicis/sklearn/02_validacio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Validació del model
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2_4_2" id="__nav_3_2_4_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Pràctiques
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_3_2_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    2. Pràctiques
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../U03%20Python%20aplicat%20al%20Big%20Data%20i%20Intel%C2%B7ligencia%20Artificial/exercicis/sklearn/03_comparacio_de_models/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Comparació de models
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../U03%20Python%20aplicat%20al%20Big%20Data%20i%20Intel%C2%B7ligencia%20Artificial/exercicis/sklearn/04_overfitting_underfitting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Ajust de models
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2_5" id="__nav_3_2_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. Keras
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    6. Keras
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_5_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2_5_1" id="__nav_3_2_5_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Activitats
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_3_2_5_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2_5_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    1. Activitats
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../U03%20Python%20aplicat%20al%20Big%20Data%20i%20Intel%C2%B7ligencia%20Artificial/exercicis/keras/01_underfitting_overfitting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Subajust i sobreajust - Parada anticipada
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../U03%20Python%20aplicat%20al%20Big%20Data%20i%20Intel%C2%B7ligencia%20Artificial/exercicis/keras/02_dropout/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Abandonament
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../U03%20Python%20aplicat%20al%20Big%20Data%20i%20Intel%C2%B7ligencia%20Artificial/exercicis/keras/03_batch_normalization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Normalització de lots
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_5_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2_5_2" id="__nav_3_2_5_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Pràctiques
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_3_2_5_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2_5_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    2. Pràctiques
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../U03%20Python%20aplicat%20al%20Big%20Data%20i%20Intel%C2%B7ligencia%20Artificial/exercicis/keras/04_regression/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Xarxes Neuronals - Regressió
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../U03%20Python%20aplicat%20al%20Big%20Data%20i%20Intel%C2%B7ligencia%20Artificial/exercicis/keras/05_classification/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Xarxes Neuronals - Classificació
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../U03%20Python%20aplicat%20al%20Big%20Data%20i%20Intel%C2%B7ligencia%20Artificial/exercicis/keras/06_sklearn_vs_keras/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Algoritmes clàssics front a xarxes neuronals
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../U03%20Python%20aplicat%20al%20Big%20Data%20i%20Intel%C2%B7ligencia%20Artificial/exercicis/keras/07_save_and_load/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. Guardat i càrrega de models
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unitat 4. Programació d'aplicacions
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Unitat 4. Programació d'aplicacions
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../U04%20Programaci%C3%B3%20d%27Aplicacions/1.%20Aplicacions%20clients%20amb%20Flet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Programació d'aplicacions client amb Flet
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../U04%20Programaci%C3%B3%20d%27Aplicacions/2.%20Contenidors%20de%20BBDD%20amb%20Docker/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Contenidors. Bases de Dades
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../U04%20Programaci%C3%B3%20d%27Aplicacions/3.%20Peticions%20HTTP.%20API-REST/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Peticions HTTP. API REST
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../U04%20Programaci%C3%B3%20d%27Aplicacions/4.%20Servidors%20amb%20Flask/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. Servidors amb Flask
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../U04%20Programaci%C3%B3%20d%27Aplicacions/5.%20Practiques/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. Pràctiques
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unitat 5. Programació d'aplicacions d'IA
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Unitat 5. Programació d'aplicacions d'IA
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../U05%20Programaci%C3%B3%20d%27Apps%20d%27IA/01_AzureTextAnalytics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Azure Text
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../U05%20Programaci%C3%B3%20d%27Apps%20d%27IA/02_FaceDetection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Azure Face
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../U05%20Programaci%C3%B3%20d%27Apps%20d%27IA/03_ComputerVision/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Computer Vision
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../U05%20Programaci%C3%B3%20d%27Apps%20d%27IA/04_Practiques/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. Pràctiques
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unitat 6. Convergència tecnològica
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Unitat 6. Convergència tecnològica
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01_OpenCV_Basic/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Computer Vision
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02_CapturarImatges/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Capturar imatges
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_6_3" id="__nav_6_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. YOLO
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    3. YOLO
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../0_Introduccio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Introducció
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1_Deteccio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Detecció d'objectes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2_Segmentacio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Segmentació d'objectes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3_Classificacio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. Classificació d'imatges
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4_Postura/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. Postures en imatges
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../5_OBB/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. Caixes de delimitació inclinades
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7. Entrenament de models
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7. Entrenament de models
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Taula de continguts">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Taula de continguts
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-entrenament-del-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Entrenament del model
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-fonamentacio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Fonamentació
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Fonamentació">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-com-sentrena-un-model-yolo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1. Com s'entrena un model YOLO
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-coco" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2. COCO
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-dataset-estructura-i-etiquetes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Dataset (Estructura i etiquetes)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Dataset (Estructura i etiquetes)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-les-etiquetes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1. Les etiquetes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-larxiu-de-configuracio-datayaml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2. L'arxiu de configuració data.yaml
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-augmentacio-del-dataset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3. Augmentació del dataset
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.3. Augmentació del dataset">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#331-augmentacion-online-on-the-fly" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3.1. Augmentación online (on-the-fly)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#332-exemple-simplificat-hypyaml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3.2. Exemple (simplificat) hyp.yaml
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#333-augmentacio-offline-o-directa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3.3. Augmentació offline o directa
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-creacio-del-dataset-lego-starwars" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Creació del dataset (Lego-StarWars)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-entrenament" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Entrenament
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-prediccio-del-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Predicció del model
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../7_Reconeixement_Cares/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8. Reconeixement facial
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Informació general
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Informació general
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../info/guia_didactica/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guia didàctica
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Taula de continguts">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Taula de continguts
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-entrenament-del-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Entrenament del model
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-fonamentacio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Fonamentació
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Fonamentació">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-com-sentrena-un-model-yolo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1. Com s'entrena un model YOLO
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-coco" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2. COCO
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-dataset-estructura-i-etiquetes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Dataset (Estructura i etiquetes)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Dataset (Estructura i etiquetes)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-les-etiquetes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1. Les etiquetes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-larxiu-de-configuracio-datayaml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2. L'arxiu de configuració data.yaml
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-augmentacio-del-dataset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3. Augmentació del dataset
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.3. Augmentació del dataset">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#331-augmentacion-online-on-the-fly" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3.1. Augmentación online (on-the-fly)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#332-exemple-simplificat-hypyaml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3.2. Exemple (simplificat) hyp.yaml
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#333-augmentacio-offline-o-directa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3.3. Augmentació offline o directa
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-creacio-del-dataset-lego-starwars" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Creació del dataset (Lego-StarWars)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-entrenament" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Entrenament
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-prediccio-del-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Predicció del model
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+  <h1>7. Entrenament de models</h1>
+
+<h2 id="1-entrenament-del-model">1. Entrenament del model</h2>
+<p><img alt="Entrenament" class="al75" src="../train.jpg" /></p>
+<h2 id="2-fonamentacio">2. Fonamentació</h2>
+<p>YOLO (You Only Look Once) és una família de models de deep learning enfocats en la detecció d'objectes en imatges o vídeos. Es caracteritza per la seva velocitat i precisió en temps real, ja que el model processa tota la imatge d'una sola vegada per predir les regions on es troben els objectes i la seva classe.</p>
+<h3 id="21-com-sentrena-un-model-yolo">2.1. Com s'entrena un model YOLO</h3>
+<ul>
+<li><strong>Recopilació de dades</strong>: Es reuneixen imatges etiquetades amb les coordenades dels objectes i les seves categories. Les coordenades es representen com a caixes delimitadores (bounding boxes) que envolten els objectes d'interès.</li>
+<li><strong>Preparació de dades</strong>: S'estructuren les etiquetes en un format compatible (per exemple, COCO o YOLO).</li>
+<li><strong>Configuració de l'entrenament</strong>: Es tria l'arquitectura YOLO (p. ex. YOLOv5, YOLOv7, YOLOv8, etc.), la mida del lot (batch size) i els hiperparàmetres (èpoques, taxa d'aprenentatge, etc.).</li>
+<li><strong>Procés d'entrenament</strong>: Amb cada lot d'imatges, la xarxa ajusta els pesos per minimitzar la diferència entre les prediccions i les etiquetes reals.</li>
+<li><strong>Validació i ajust</strong>: S'avalua el rendiment en un conjunt de validació per ajustar hiperparàmetres i evitar sobreajustament.</li>
+</ul>
+<h3 id="22-coco">2.2. COCO</h3>
+<p>El modelat COCO (sigles de <strong>Common Objects in Context</strong>) es refereix a un format estàndard utilitzat per estructurar les anotacions en datasets de visió per computador.</p>
+<p>Originalment creat per Microsoft per al seu famós dataset, s'ha convertit en un estàndard de la indústria per entrenar models d'Intel·ligència Artificial en tasques com la detecció d'objectes, la segmentació d'instàncies i la detecció de punts clau (keypoints).</p>
+<p>A diferència d'altres formats que creen un fitxer de text per cada imatge (com el format YOLO), el format COCO utilitza un únic fitxer JSON gegant que conté tota la informació de tot el dataset (entrenament, validació o test). Aquest fitxer JSON inclou informació sobre les imatges, les categories d'objectes, les anotacions (caixes delimitadores, segmentacions, etc.) i altres metadades.</p>
+<h2 id="3-dataset-estructura-i-etiquetes">3. Dataset (Estructura i etiquetes)</h2>
+<p>L'estructura del dataset es divideix en diverses carpetes i fitxers de configuració:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Opció 1</label><label for="__tabbed_1_2">Opció 2</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-0-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-0-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-0-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-0-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-0-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-0-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-0-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-0-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-0-10">10</a></span>
+<span class="normal"><a href="#__codelineno-0-11">11</a></span>
+<span class="normal"><a href="#__codelineno-0-12">12</a></span>
+<span class="normal"><a href="#__codelineno-0-13">13</a></span>
+<span class="normal"><a href="#__codelineno-0-14">14</a></span>
+<span class="normal"><a href="#__codelineno-0-15">15</a></span>
+<span class="normal"><a href="#__codelineno-0-16">16</a></span>
+<span class="normal"><a href="#__codelineno-0-17">17</a></span>
+<span class="normal"><a href="#__codelineno-0-18">18</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a>dataset/
+<a id="__codelineno-0-2" name="__codelineno-0-2"></a>├─ data.yaml
+<a id="__codelineno-0-3" name="__codelineno-0-3"></a>├─ images/
+<a id="__codelineno-0-4" name="__codelineno-0-4"></a>│   ├─ train/
+<a id="__codelineno-0-5" name="__codelineno-0-5"></a>│   │   ├─ foto1.jpg
+<a id="__codelineno-0-6" name="__codelineno-0-6"></a>│   │   ├─ foto2.jpg
+<a id="__codelineno-0-7" name="__codelineno-0-7"></a>│   │   └─ ...
+<a id="__codelineno-0-8" name="__codelineno-0-8"></a>│   └─ val/
+<a id="__codelineno-0-9" name="__codelineno-0-9"></a>│       ├─ fotoX.jpg
+<a id="__codelineno-0-10" name="__codelineno-0-10"></a>│       └─ ...
+<a id="__codelineno-0-11" name="__codelineno-0-11"></a>└─ labels/
+<a id="__codelineno-0-12" name="__codelineno-0-12"></a>    ├─ train/
+<a id="__codelineno-0-13" name="__codelineno-0-13"></a>    │   ├─ foto1.txt
+<a id="__codelineno-0-14" name="__codelineno-0-14"></a>    │   ├─ foto2.txt
+<a id="__codelineno-0-15" name="__codelineno-0-15"></a>    │   └─ ...
+<a id="__codelineno-0-16" name="__codelineno-0-16"></a>    └─ val/
+<a id="__codelineno-0-17" name="__codelineno-0-17"></a>        ├─ fotoX.txt
+<a id="__codelineno-0-18" name="__codelineno-0-18"></a>        └─ ...
+</code></pre></div></td></tr></table></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-1-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-1-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-1-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-1-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-1-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-1-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-1-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-1-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-1-10">10</a></span>
+<span class="normal"><a href="#__codelineno-1-11">11</a></span>
+<span class="normal"><a href="#__codelineno-1-12">12</a></span>
+<span class="normal"><a href="#__codelineno-1-13">13</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a>dataset/
+<a id="__codelineno-1-2" name="__codelineno-1-2"></a>├── data.yaml
+<a id="__codelineno-1-3" name="__codelineno-1-3"></a>├── README.dataset.txt
+<a id="__codelineno-1-4" name="__codelineno-1-4"></a>├── README.roboflow.txt
+<a id="__codelineno-1-5" name="__codelineno-1-5"></a>├── test
+<a id="__codelineno-1-6" name="__codelineno-1-6"></a>│   ├── images
+<a id="__codelineno-1-7" name="__codelineno-1-7"></a>│   └── labels
+<a id="__codelineno-1-8" name="__codelineno-1-8"></a>├── train
+<a id="__codelineno-1-9" name="__codelineno-1-9"></a>│   ├── images
+<a id="__codelineno-1-10" name="__codelineno-1-10"></a>│   └── labels
+<a id="__codelineno-1-11" name="__codelineno-1-11"></a>└── valid
+<a id="__codelineno-1-12" name="__codelineno-1-12"></a>    ├── images
+<a id="__codelineno-1-13" name="__codelineno-1-13"></a>    └── labels
+</code></pre></div></td></tr></table></div>
+</div>
+</div>
+</div>
+<p>Com podem observar:</p>
+<ul>
+<li><code>dataset/</code>: Carpeta principal del dataset.</li>
+<li><code>data.yaml</code>: Fitxer de configuració que defineix les rutes d'accés a les imatges i les etiquetes, així com les classes d'objectes.</li>
+<li><code>images/</code>: Carpeta que conté les imatges d'entrenament i validació.</li>
+<li><code>labels/</code>: Carpeta que conté les etiquetes corresponents a les imatges, amb el mateix nom però amb extensió <code>.txt</code>.</li>
+</ul>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<ul>
+<li>Per a cada <code>fotoX.jpg</code> a <code>images/train</code>, hi ha un corresponent <code>fotoX.txt</code> a <code>labels/train</code> que descriu totes les caixes dels objectes d'aquesta imatge (una línia per objecte).</li>
+<li>La separacion primer en imatges i despres en etiquetes dependrà de les preferències de cada persona, però el més important és que les rutes d'accés a les imatges i etiquetes estiguin ben definides al <code>data.yaml</code> per a que el model pugui accedir-hi correctament durant l'entrenament.</li>
+</ul>
+</div>
+<h3 id="31-les-etiquetes">3.1. Les etiquetes</h3>
+<p>Com ja hem vist tenim per un costat les imatges i per  a cada imatge tenim un fitxer de text amb el mateix nom però amb extensió <code>.txt</code> que conté les etiquetes. Aquestes etiquetes es representen com a línies de text, on cada línia correspon a un objecte detectat a la imatge i segueix el format següent:</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a>&lt;class_id&gt; &lt;x_center&gt; &lt;y_center&gt; &lt;width&gt; &lt;height&gt;
+</code></pre></div></td></tr></table></div>
+<p>on:</p>
+<ul>
+<li><strong>class_id</strong>: Identificador de la classe (<strong>objecte</strong>) en format enter (0, 1, 2...). Si només tens una classe (p. ex. "matricula"), serà sempre 0. Si per exemple tens matrícules, far esquerre i far dret, matrícula seria el 0, far esquerre seria l'1 i far dret el 2.</li>
+<li><strong>x_center</strong>: Coordenada X del centre de la caixa, normalitzada (dividida entre l'amplada de la imatge).</li>
+<li><strong>y_center</strong>: Coordenada Y del centre de la caixa, normalitzada (dividida entre l'altura de la imatge).</li>
+<li><strong>width</strong>: Amplada de la caixa, també normalitzada (dividida entre l'amplada de la imatge).</li>
+<li><strong>height</strong>: Altura de la caixa, normalitzada (dividida entre l'altura de la imatge).</li>
+</ul>
+<p>Tots els valors estan normalitzats en el rang 0-1 respecte a les dimensions de la imatge.</p>
+<div class="admonition example">
+<p class="admonition-title">Exemple d'una BB</p>
+<p>Imagina que tens una imatge de 1280 px d'amplada per 720 px d'altura, i la caixa delimitadora que t'interessa va des de (x1=600, y1=200) fins a (x2=750, y2=300).</p>
+<p>Valores reales (a la imatge):</p>
+<ul>
+<li>Ample de la caixa = x2 - x1 = 150 px</li>
+<li>Alt de la caixa = y2 - y1 = 100 px</li>
+<li>Centre X = (x1 + x2)/2 = (600 + 750)/2 = 675 px</li>
+<li>Centre  Y = (y1 + y2)/2 = (200 + 300)/2 = 250 px</li>
+</ul>
+<p>Valors normalizados (al dataset):
+- Ample normalitzat = 150 / 1280 ≈ 0.1172
+- Alt normalitzat = 100 / 720 ≈ 0.1389
+- Centre X normalitzat = 675 / 1280 ≈ 0.5273
+- Centre Y normalitzat = 250 / 720 ≈ 0.3472</p>
+<p>Si <code>class_id=0</code>, la línea en tu archivo .txt quedaría:
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a>0 0.5273 0.3472 0.1172 0.1389
+</code></pre></div></td></tr></table></div></p>
+</div>
+<p>Pensa que, quan YOLO s'entrena (o infereix), cercarà aquests fitxers <code>.txt</code> per saber on es troben els objectes (en el teu cas, les matrícules) i amb quina classe associar-los. Això és fonamental perquè el model aprengui de forma supervisada.</p>
+<p>Després, en inferència o predicció, el model generarà les seves pròpies coordenades de sortida, també normalment en un sistema similar, però te les proporcionarà en escala absoluta o normalitzada segons la llibreria que estiguis utilitzant.</p>
+<h3 id="32-larxiu-de-configuracio-datayaml">3.2. L'arxiu de configuració <code>data.yaml</code></h3>
+<p>En el cas de YOLO (especialment en variants com YOLOv5 o YOLOv8), l'arxiu <code>.yaml</code> que es troba a la carpeta principal (o a l'arrel del dataset) serveix per descriure la configuració del conjunt de dades.</p>
+<p>En general, aquest arxiu <code>.yaml</code> conté informació com:</p>
+<ul>
+<li>
+<p><strong>Rutes dels dades</strong>:</p>
+<ul>
+<li>La ruta o path on es localitzen les imatges d'entrenament (train).</li>
+<li>La ruta on es localitzen les imatges de validació (val).</li>
+<li>(Opcionalment) la ruta a les imatges de prova (test).</li>
+</ul>
+</li>
+<li>
+<p><strong>Quantitat i nom de les classes</strong>:</p>
+<ul>
+<li>Un llistat amb els noms de cada classe (per exemple, <code>['gos', 'gat', 'persona']</code>).</li>
+<li>El nombre total de classes al dataset.</li>
+</ul>
+</li>
+<li>
+<p><strong>Paràmetres addicionals</strong> (opcional):</p>
+<ul>
+<li>Rutes d'anotacions, si es gestionen en carpetes diferents.</li>
+<li>Configuracions específiques per a l'entrenament (encara que aquest tipus d'informació a vegades va en un altre arxiu diferent).</li>
+<li>Identificadors o camps extras que et permeten integrar el dataset en un flux de treball més complex.</li>
+</ul>
+</li>
+</ul>
+<p>Exemple d'un <code>data.yaml</code>:</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">YAML</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-4-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-4-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-4-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-4-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-4-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-4-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-4-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-4-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-4-10">10</a></span>
+<span class="normal"><a href="#__codelineno-4-11">11</a></span>
+<span class="normal"><a href="#__codelineno-4-12">12</a></span>
+<span class="normal"><a href="#__codelineno-4-13">13</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="nt">train</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">../train/images</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2"></a><span class="nt">val</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">../valid/images</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3"></a><span class="nt">test</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">../test/images</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4"></a>
+<a id="__codelineno-4-5" name="__codelineno-4-5"></a><span class="nt">nc</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6"></a><span class="nt">names</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&#39;matricula&#39;</span><span class="p p-Indicator">,</span><span class="s">&#39;faro_izq&#39;</span><span class="p p-Indicator">,</span><span class="s">&#39;faro_der&#39;</span><span class="p p-Indicator">]</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7"></a>
+<a id="__codelineno-4-8" name="__codelineno-4-8"></a><span class="nt">roboflow</span><span class="p">:</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9"></a><span class="w">  </span><span class="nt">workspace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">vc</span>
+<a id="__codelineno-4-10" name="__codelineno-4-10"></a><span class="w">  </span><span class="nt">project</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">matriculas-espanolas</span>
+<a id="__codelineno-4-11" name="__codelineno-4-11"></a><span class="w">  </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+<a id="__codelineno-4-12" name="__codelineno-4-12"></a><span class="w">  </span><span class="nt">license</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CC BY 4.0</span>
+<a id="__codelineno-4-13" name="__codelineno-4-13"></a><span class="w">  </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://universe.roboflow.com/vc/matriculas-espanolas/dataset/1</span>
+</code></pre></div></td></tr></table></div>
+<h3 id="33-augmentacio-del-dataset">3.3. Augmentació del dataset</h3>
+<p>Com sabem, un dels principals problemes a l'hora d'entrenar un model de detecció d'objectes és la manca de dades. Per això, una tècnica molt utilitzada és l'augmentació de dades, que consisteix en aplicar transformacions a les imatges existents per crear noves imatges sintètiques que ajudin a millorar la generalització del model.</p>
+<h4 id="331-augmentacion-online-on-the-fly">3.3.1. Augmentación online (on-the-fly)</h4>
+<p>Aquest tipus d'augmentació es fa durant l'entrenament. La majoria d'implementacions recents de YOLO (p. ex., YOLOv5, YOLOv7, YOLOv8) ja inclouen una sèrie de transformacions aplicades automàticament. Aquesta augmentació es fa al moment d'entrenar, i cada vegada que es carrega un lot (batch) d'imatges, s'apliquen transformacions aleatòries a les imatges i les etiquetes corresponents. Nosaltres al disc tindrem sols el conjunt original d'imatges, però el model veurà versions augmentades d'aquestes imatges durant l'entrenament.</p>
+<p>En molts repositoris es crea un fitxer de hiperparàmetres, sovint anomenat <code>hyp.yaml</code> o similar. Dins d'aquest fitxer, pots ajustar distintos paràmetres d'augmentació com:</p>
+<ul>
+<li><strong>hsv_h, hsv_s, hsv_v</strong>: Augments de to, saturació i valor en espai de color HSV.</li>
+<li><strong>degrees</strong>: Rotació.</li>
+<li><strong>translate</strong>: Translació (moviment de la imatge).</li>
+<li><strong>scale</strong>: Escalat.</li>
+<li><strong>shear</strong>: Efecte de cisalladura (shear).</li>
+<li><strong>flipud</strong>: Gir vertical.</li>
+<li><strong>fliplr</strong>: Gir horitzontal.</li>
+</ul>
+<p>Per exemple, en YOLOv5 (dins del seu repositori oficial) existeix un fitxer <code>hyp.yaml</code> amb paràmetres predefinits. Pots editar-lo per ajustar la intensitat de cada transformació.</p>
+<h4 id="332-exemple-simplificat-hypyaml">3.3.2. Exemple (simplificat) <code>hyp.yaml</code></h4>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">YAML</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-5-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-5-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-5-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-5-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-5-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-5-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-5-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-5-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-5-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="nt">augments</span><span class="p">:</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2"></a><span class="w">    </span><span class="nt">degrees</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.05</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3"></a><span class="w">    </span><span class="nt">translate</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.1</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4"></a><span class="w">    </span><span class="nt">scale</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.9</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5"></a><span class="w">    </span><span class="nt">shear</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6"></a><span class="w">    </span><span class="nt">flipud</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7"></a><span class="w">    </span><span class="nt">fliplr</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.5</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8"></a><span class="w">    </span><span class="nt">hsv_h</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.015</span>
+<a id="__codelineno-5-9" name="__codelineno-5-9"></a><span class="w">    </span><span class="nt">hsv_s</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.7</span>
+<a id="__codelineno-5-10" name="__codelineno-5-10"></a><span class="w">    </span><span class="nt">hsv_v</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.4</span>
+</code></pre></div></td></tr></table></div>
+<p>En entrenar el teu model YOLO aplicarà automàticament aquestes transformacions al carregar cada lot (batch) d'imatges.</p>
+<p>La crida d'entrenament podria ser similar a aquesta, passant-ho com a paràmetres dins d'un programa Python. Ho veurem més endavant a la secció de codi, però aquí tens un exemple de com es podria configurar l'entrenament amb augmentació:</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-6-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-6-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-6-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-6-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-6-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-6-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-6-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-6-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-6-10">10</a></span>
+<span class="normal"><a href="#__codelineno-6-11">11</a></span>
+<span class="normal"><a href="#__codelineno-6-12">12</a></span>
+<span class="normal"><a href="#__codelineno-6-13">13</a></span>
+<span class="normal"><a href="#__codelineno-6-14">14</a></span>
+<span class="normal"><a href="#__codelineno-6-15">15</a></span>
+<span class="normal"><a href="#__codelineno-6-16">16</a></span>
+<span class="normal"><a href="#__codelineno-6-17">17</a></span>
+<span class="normal"><a href="#__codelineno-6-18">18</a></span>
+<span class="normal"><a href="#__codelineno-6-19">19</a></span>
+<span class="normal"><a href="#__codelineno-6-20">20</a></span>
+<span class="normal"><a href="#__codelineno-6-21">21</a></span>
+<span class="normal"><a href="#__codelineno-6-22">22</a></span>
+<span class="normal"><a href="#__codelineno-6-23">23</a></span>
+<span class="normal"><a href="#__codelineno-6-24">24</a></span>
+<span class="normal"><a href="#__codelineno-6-25">25</a></span>
+<span class="normal"><a href="#__codelineno-6-26">26</a></span>
+<span class="normal"><a href="#__codelineno-6-27">27</a></span>
+<span class="normal"><a href="#__codelineno-6-28">28</a></span>
+<span class="normal"><a href="#__codelineno-6-29">29</a></span>
+<span class="normal"><a href="#__codelineno-6-30">30</a></span>
+<span class="normal"><a href="#__codelineno-6-31">31</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="n">results</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">train</span><span class="p">(</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2"></a>    <span class="c1"># --- Paràmetres Bàsics ---</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3"></a>    <span class="n">data</span><span class="o">=</span><span class="s2">&quot;data.yaml&quot;</span><span class="p">,</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4"></a>    <span class="n">epochs</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5"></a>    <span class="n">batch</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6"></a>    <span class="n">imgsz</span><span class="o">=</span><span class="mi">640</span><span class="p">,</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7"></a>    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;yolov8n_aug_experiment&quot;</span><span class="p">,</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8"></a>    <span class="n">device</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+<a id="__codelineno-6-9" name="__codelineno-6-9"></a>
+<a id="__codelineno-6-10" name="__codelineno-6-10"></a>    <span class="c1"># --- Augmentació Geomètrica ---</span>
+<a id="__codelineno-6-11" name="__codelineno-6-11"></a>    <span class="n">degrees</span><span class="o">=</span><span class="mf">10.0</span><span class="p">,</span>      <span class="c1"># Rotació de la imatge (+/- 10 graus)</span>
+<a id="__codelineno-6-12" name="__codelineno-6-12"></a>    <span class="n">translate</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>     <span class="c1"># Translació (desplaçament) horitzontal/vertical (fracció)</span>
+<a id="__codelineno-6-13" name="__codelineno-6-13"></a>    <span class="n">scale</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>         <span class="c1"># Escalat de la imatge (+/- 50%)</span>
+<a id="__codelineno-6-14" name="__codelineno-6-14"></a>    <span class="n">shear</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>         <span class="c1"># Cisallament (inclinació)</span>
+<a id="__codelineno-6-15" name="__codelineno-6-15"></a>    <span class="n">perspective</span><span class="o">=</span><span class="mf">0.0005</span><span class="p">,</span> <span class="c1"># Perspectiva (0.0 - 0.001)</span>
+<a id="__codelineno-6-16" name="__codelineno-6-16"></a>    <span class="n">flipud</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>        <span class="c1"># Probabilitat de volteig vertical (amunt-avall)</span>
+<a id="__codelineno-6-17" name="__codelineno-6-17"></a>    <span class="n">fliplr</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>        <span class="c1"># Probabilitat de volteig horitzontal (esquerra-dreta)</span>
+<a id="__codelineno-6-18" name="__codelineno-6-18"></a>
+<a id="__codelineno-6-19" name="__codelineno-6-19"></a>    <span class="c1"># --- Augmentació de Color/Llum (Espai HSV) ---</span>
+<a id="__codelineno-6-20" name="__codelineno-6-20"></a>    <span class="n">hsv_h</span><span class="o">=</span><span class="mf">0.015</span><span class="p">,</span>       <span class="c1"># Ajust del to (Hue)</span>
+<a id="__codelineno-6-21" name="__codelineno-6-21"></a>    <span class="n">hsv_s</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span>         <span class="c1"># Ajust de la saturació</span>
+<a id="__codelineno-6-22" name="__codelineno-6-22"></a>    <span class="n">hsv_v</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span>         <span class="c1"># Ajust del valor (brillantor)</span>
+<a id="__codelineno-6-23" name="__codelineno-6-23"></a>
+<a id="__codelineno-6-24" name="__codelineno-6-24"></a>    <span class="c1"># --- Augmentacions Específiques de YOLO ---</span>
+<a id="__codelineno-6-25" name="__codelineno-6-25"></a>    <span class="n">mosaic</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>        <span class="c1"># Probabilitat d&#39;usar Mosaic (juntar 4 imatges en una). Molt important!</span>
+<a id="__codelineno-6-26" name="__codelineno-6-26"></a>    <span class="n">mixup</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>         <span class="c1"># Probabilitat de Mixup (superposar dues imatges amb transparència)</span>
+<a id="__codelineno-6-27" name="__codelineno-6-27"></a>    <span class="n">copy_paste</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>    <span class="c1"># Útil per a segmentació (copiar objectes i enganxar-los en altres llocs)</span>
+<a id="__codelineno-6-28" name="__codelineno-6-28"></a>
+<a id="__codelineno-6-29" name="__codelineno-6-29"></a>    <span class="c1"># --- Configuració extra ---</span>
+<a id="__codelineno-6-30" name="__codelineno-6-30"></a>    <span class="n">close_mosaic</span><span class="o">=</span><span class="mi">10</span>    <span class="c1"># Desactiva el mosaic les últimes 10 èpoques per afinar la precisió</span>
+<a id="__codelineno-6-31" name="__codelineno-6-31"></a><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<h4 id="333-augmentacio-offline-o-directa">3.3.3. Augmentació offline o directa</h4>
+<p>En aquest cas, les transformacions s'apliquen abans de l'entrenament, i es guarden com a noves imatges i etiquetes al disc. Això pot ser útil si vols tenir un control total sobre les imatges augmentades o si vols reutilitzar-les en diferents experiments sense haver de generar-les cada vegada.</p>
+<p>Fer augmentació offline implica crear un nou conjunt d'imatges augmentades i les seves corresponents etiquetes. Per exemple, si tens 100 imatges originals i apliques 5 transformacions diferents a cada imatge, podries acabar amb 500 imatges augmentades (a més de les 100 originals).</p>
+<p>Farem servir la llibreria <code>albumentations</code> per a fer augmentació offline. Aquesta llibreria és molt potent i flexible, i permet aplicar una gran varietat de transformacions tant geomètriques com de color.</p>
+<p>Pots trobar exemples molt interessants a <a href="https://docs.ultralytics.com/integrations/albumentations/">https://docs.ultralytics.com/integrations/albumentations/</a></p>
+<p>El programa que et passes <code>aumentar_dataset_yolo.py</code> és un script que utilitza <code>albumentations</code> per augmentar un dataset de YOLO. Aquest script llegeix les imatges i les etiquetes del dataset original, aplica transformacions d'augmentació a les imatges i actualitza les etiquetes corresponents per reflectir els canvis.</p>
+<h2 id="4-creacio-del-dataset-lego-starwars">4. Creació del dataset (Lego-StarWars)</h2>
+<p>Doncs be, ha arribat el pas més complex, que és la creació del dataset. Per a això, necessitem recollir imatges que continguin els objectes que volem detectar (en el nostre cas, figures de Lego de StarWars) i etiquetar-les amb les caixes delimitadores corresponents.</p>
+<p>Per a crar-ho anem a fer servir una eina molt còmoda i popular, que és <code>label-studio</code>. Aquesta eina ens permet carregar les imatges, dibuixar les caixes delimitadores al voltant dels objectes d'interès i guardar les etiquetes en el format que necessitem per a entrenar el nostre model YOLO.</p>
+<p>L'eina està integrada en una web app, que podem instal·lar en local:</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1"></a>pip<span class="w"> </span>install<span class="w"> </span>label-studio
+</code></pre></div></td></tr></table></div>
+<p>pera arrancar-la, només cal executar:</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1"></a>label-studio<span class="w"> </span>start
+</code></pre></div></td></tr></table></div>
+<p>i accedir a <code>http://localhost:8080</code> des del navegador. Un cop dins, podem crear un nou projecte, carregar les imatges i començar a etiquetar.</p>
+<p>Si no volem instal·lar res al nostre entor, podem fer ús de docker per a executar <code>label-studio</code> en un contenidor. Per a això, podem utilitzar la següent comanda:</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1">1</a></span>
+<span class="normal"><a href="#__codelineno-9-2">2</a></span>
+<span class="normal"><a href="#__codelineno-9-3">3</a></span>
+<span class="normal"><a href="#__codelineno-9-4">4</a></span>
+<span class="normal"><a href="#__codelineno-9-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1"></a>docker<span class="w"> </span>run<span class="w"> </span>
+<a id="__codelineno-9-2" name="__codelineno-9-2"></a><span class="w">    </span>-it<span class="w"> </span>-p<span class="w"> </span><span class="m">8080</span>:8080<span class="w"> </span>
+<a id="__codelineno-9-3" name="__codelineno-9-3"></a><span class="w">    </span>-v<span class="w"> </span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>/dataset:/label-studio/data<span class="w"> </span>
+<a id="__codelineno-9-4" name="__codelineno-9-4"></a><span class="w">    </span>--name<span class="w"> </span>label-studio<span class="w"> </span>
+<a id="__codelineno-9-5" name="__codelineno-9-5"></a><span class="w">    </span>heartexlabs/label-studio:latest
+</code></pre></div></td></tr></table></div>
+<p>Això posa a escoltar el servidor al port 8080 i monta la carpeta <code>dataset</code> del nostre home (on executem docker) del disc dins del contenidor, de manera que les imatges que carreguem a <code>label-studio</code> es guardaran directament a la carpeta <code>dataset</code> del nostre projecte i no les perdrem quan tanquem el contenidor.</p>
+<p>Accedirem al servidor de <code>label-studio</code> a <code>http://localhost:8080</code>. Ens hem de registrar, però es un login local, que no es connecta a cap servidor exter.</p>
+<p><img alt="alt text" class="al75" src="../label_studio_01.png" /></p>
+<p>Un cop dins, crearem un nou projecte.</p>
+<p><img alt="alt text" class="al75" src="../label_studio_02.png" /></p>
+<p>A la següent pestanya carregarem les imatges que volem etiquetar. Podem carregar-les des del disc local o, si estem executant <code>label-studio</code> amb docker, podem carregar-les directament a la carpeta <code>dataset</code> del nostre projecte i després seleccionar-les des de l'eina. Tambe ens permet carregar-les des d'una URL al nuvol, com S3 o Google Drive.</p>
+<p><img alt="alt text" src="../label_studio_03.png" /></p>
+<p><img alt="alt text" src="../label_studio_04.png" /></p>
+<p>La última part de l'assistent és definir per a que és el dataset que estem creant. En el nostre cas, seleccionarem <strong>Object Detection with Bounding Boxes</strong>.</p>
+<p><img alt="alt text" src="../label_studio_05.png" /></p>
+<p>Eliminem els <code>labels</code> que venen per defecte i creem un nou <code>label</code> amb el nom de la classe que volem detectar. Els escriurem un en cada línea. Farem clic en <code>add</code>.</p>
+<p>Fent clic a les etiquetes podem canviar el color. </p>
+<p>Finalment, fem clic a <code>save</code> per a crear el projecte i començar a etiquetar les imatges.</p>
+<p><img alt="alt text" src="../label_studio_06.png" /></p>
+<p><img alt="alt text" src="../label_studio_07.png" /></p>
+<p>Ara ja podem començar a etiquetar les imatges. Per a això, farem doble clic a una imatge i dibuixarem una caixa delimitadora al voltant de cada objecte que volem detectar:</p>
+<ul>
+<li>Seleccionem la etiqueta</li>
+<li>Dibuixem el BB de la classe que volem detectar</li>
+<li>Fem clic a <code>submit</code> per a guardar l'etiqueta</li>
+</ul>
+<p>Repetirem el procés per a cada imatge.</p>
+<p><img alt="alt text" src="../label_studio_08.png" />
+<img alt="alt text" src="../label_studio_09.png" /></p>
+<p>Un cop hem etiquetat tot hem de procedir a generar el dataset en el format que necessitem per a entrenar el nostre model YOLO. Per a això, farem clic a <code>Export</code> i seleccionarem el format <code>YOLO with images</code>. Això generarà un fitxer <code>.zip</code> que conté les imatges i les etiquetes en el format correcte i el arxiu YAML de configuració.</p>
+<p><img alt="alt text" src="../label_studio_10.png" /></p>
+<p>Ja tenim les nostres dades etiquetades i preparades per a entrenar el nostre model YOLO!</p>
+<h2 id="5-entrenament">5. Entrenament</h2>
+<p>Ara ha arribat el moment de entrenar el model. Aquest pas és molt senzill si hem definit el arxiu yaml d'abans, el qual completarem. Anem a veure un exemple al qual descriurem alguna de les parts:</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">YAML</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-10-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-10-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-10-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-10-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-10-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-10-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-10-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-10-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-10-10">10</a></span>
+<span class="normal"><a href="#__codelineno-10-11">11</a></span>
+<span class="normal"><a href="#__codelineno-10-12">12</a></span>
+<span class="normal"><a href="#__codelineno-10-13">13</a></span>
+<span class="normal"><a href="#__codelineno-10-14">14</a></span>
+<span class="normal"><a href="#__codelineno-10-15">15</a></span>
+<span class="normal"><a href="#__codelineno-10-16">16</a></span>
+<span class="normal"><a href="#__codelineno-10-17">17</a></span>
+<span class="normal"><a href="#__codelineno-10-18">18</a></span>
+<span class="normal"><a href="#__codelineno-10-19">19</a></span>
+<span class="normal"><a href="#__codelineno-10-20">20</a></span>
+<span class="normal"><a href="#__codelineno-10-21">21</a></span>
+<span class="normal"><a href="#__codelineno-10-22">22</a></span>
+<span class="normal"><a href="#__codelineno-10-23">23</a></span>
+<span class="normal"><a href="#__codelineno-10-24">24</a></span>
+<span class="normal"><a href="#__codelineno-10-25">25</a></span>
+<span class="normal"><a href="#__codelineno-10-26">26</a></span>
+<span class="normal"><a href="#__codelineno-10-27">27</a></span>
+<span class="normal"><a href="#__codelineno-10-28">28</a></span>
+<span class="normal"><a href="#__codelineno-10-29">29</a></span>
+<span class="normal"><a href="#__codelineno-10-30">30</a></span>
+<span class="normal"><a href="#__codelineno-10-31">31</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1"></a><span class="c1"># Modelo</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2"></a><span class="nt">model_type</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;ypolov8s&quot;</span><span class="w">                </span><span class="c1"># Tipo de modelo a utilizar (puede ser yolov5s, yolov5m, etc.)</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3"></a>
+<a id="__codelineno-10-4" name="__codelineno-10-4"></a><span class="c1"># yolo_config.yaml</span>
+<a id="__codelineno-10-5" name="__codelineno-10-5"></a><span class="nt">batch_size</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">16</span>
+<a id="__codelineno-10-6" name="__codelineno-10-6"></a><span class="nt">img_size</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1920</span>
+<a id="__codelineno-10-7" name="__codelineno-10-7"></a><span class="nt">epochs</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">50</span>
+<a id="__codelineno-10-8" name="__codelineno-10-8"></a><span class="nt">learning_rate</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.001</span>
+<a id="__codelineno-10-9" name="__codelineno-10-9"></a><span class="nt">momentum</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.937</span>
+<a id="__codelineno-10-10" name="__codelineno-10-10"></a><span class="nt">weight_decay</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0005</span>
+<a id="__codelineno-10-11" name="__codelineno-10-11"></a><span class="nt">pretrained_weights</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;yolov8s.pt&quot;</span><span class="w">   </span><span class="c1"># Modelo preentrenado para continuar el entrenamiento</span>
+<a id="__codelineno-10-12" name="__codelineno-10-12"></a>
+<a id="__codelineno-10-13" name="__codelineno-10-13"></a><span class="c1"># Datos</span>
+<a id="__codelineno-10-14" name="__codelineno-10-14"></a><span class="nt">train</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;../data/train&quot;</span><span class="w">            </span><span class="c1"># Directorio donde están las imágenes de entrenamiento</span>
+<a id="__codelineno-10-15" name="__codelineno-10-15"></a><span class="nt">val</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;../data/val&quot;</span><span class="w">         </span><span class="c1"># Directorio donde están las imágenes de validación</span>
+<a id="__codelineno-10-16" name="__codelineno-10-16"></a>
+<a id="__codelineno-10-17" name="__codelineno-10-17"></a>
+<a id="__codelineno-10-18" name="__codelineno-10-18"></a><span class="c1"># Clases</span>
+<a id="__codelineno-10-19" name="__codelineno-10-19"></a><span class="nt">nc</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">7</span><span class="w">       </span><span class="c1"># number of classes</span>
+<a id="__codelineno-10-20" name="__codelineno-10-20"></a><span class="nt">names</span><span class="p">:</span>
+<a id="__codelineno-10-21" name="__codelineno-10-21"></a><span class="w">  </span><span class="nt">0</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;Chewbacca&#39;</span>
+<a id="__codelineno-10-22" name="__codelineno-10-22"></a><span class="w">  </span><span class="nt">1</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;Leia&#39;</span>
+<a id="__codelineno-10-23" name="__codelineno-10-23"></a><span class="w">  </span><span class="nt">2</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;Luke&#39;</span>
+<a id="__codelineno-10-24" name="__codelineno-10-24"></a><span class="w">  </span><span class="nt">3</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;ObiWan&#39;</span>
+<a id="__codelineno-10-25" name="__codelineno-10-25"></a><span class="w">  </span><span class="nt">4</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;Solo&#39;</span>
+<a id="__codelineno-10-26" name="__codelineno-10-26"></a><span class="w">  </span><span class="nt">5</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;StormTrooper&#39;</span>
+<a id="__codelineno-10-27" name="__codelineno-10-27"></a><span class="w">  </span><span class="nt">6</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;Vader&#39;</span>
+<a id="__codelineno-10-28" name="__codelineno-10-28"></a>
+<a id="__codelineno-10-29" name="__codelineno-10-29"></a>
+<a id="__codelineno-10-30" name="__codelineno-10-30"></a><span class="c1"># add</span>
+<a id="__codelineno-10-31" name="__codelineno-10-31"></a><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;yolo_sw&quot;</span>
+</code></pre></div></td></tr></table></div>
+<ul>
+<li><code>model_type</code>: Aquest paràmetre especifica el tipus de model de YOLO que s'utilitzarà. Els models de YOLO es presenten en diverses variants amb diferents mides i capacitats:</li>
+<li><code>yolo_vX_[mida]-opt</code>:<ul>
+<li><code>vx</code> és la versió: 8, 9, 11, etc.</li>
+<li><code>mida</code> és una lletra que defineix la mida del model preentrenat. Com més gran sigui, millor serà el resultat, però també augmentarà el cost d'entrenament per la quantitat d'hiperparàmetres. Valors possibles (la inicial): nano, small, medium, large i xtraLarge.</li>
+<li><code>opt</code> és per escollir el tipus de detecció que es farà amb el model.</li>
+</ul>
+</li>
+</ul>
+<p><img alt="Yolo-Versions" src="../yolo_versions.png" /></p>
+<ul>
+<li><code>batch_size</code>: És el nombre d'imatges que es processen en cada pas d'entrenament abans d'actualitzar els pesos del model. Un valor de 16 significa que el model processarà 16 imatges alhora. Un <code>batch_size</code> més gran pot accelerar l'entrenament, però també requereix més memòria GPU, mentre que un valor petit farà que el model sigui més estable però més lent.</li>
+<li><code>img_size</code>: La mida de la imatge a la qual es redimensionaran totes les imatges d'entrada abans de ser alimentades al model. En aquest cas. Una resolució més gran permet que el model capti més detalls, però també requereix més memòria i pot ser més lent.</li>
+<li><code>epochs</code>: És el nombre total de vegades que el model passarà per tot el conjunt de dades durant l'entrenament. Si el model no millora després de diverses èpoques, pots aturar l'entrenament per evitar el sobreajust.</li>
+<li><code>learning_rate</code>: La taxa d'aprenentatge és la mida del pas que l'optimitzador fa per ajustar els pesos del model en cada iteració. Un valor de 0.001 significa que l'optimitzador ajustarà els pesos amb un pas petit en cada iteració. Un valor més alt pot fer que el model aprengui més ràpid, però pot ser menys estable. Un valor més baix pot fer que el model aprengui de manera més estable, però més lentament.</li>
+<li><code>momentum</code>: És un paràmetre que ajuda a accelerar l'entrenament, especialment en les primeres etapes. Un valor de 0.937 és força comú i millora la convergència de l'optimitzador, ajudant que el model no quedi atrapat en mínims locals.</li>
+<li><code>weight_decay</code>: És una tècnica de regularització utilitzada per prevenir el sobreajust, penalitzant els pesos grans durant l'entrenament. Un valor de 0.0005 és força baix i és una regularització moderada. Un valor més alt de <code>weight_decay</code> pot reduir el risc de sobreajust, però també pot evitar que el model aprengui massa dels dades.</li>
+<li><code>pretrained_weights</code>: Especifica si s'utilitzarà un model preentrenat. Utilitzar pesos preentrenats accelera el procés d'entrenament i millora la precisió del model, especialment si el conjunt de dades és petit. Els models preentrenats s'entrenen amb grans datasets com COCO, cosa que ajuda que el model tingui una bona base per aprendre a detectar objectes.</li>
+<li><code>train</code>: Especifica la ruta al directori que conté les imatges d'entrenament. Les imatges d'entrenament s'utilitzen per entrenar el model a reconèixer objectes.</li>
+<li><code>val</code>: Especifica la ruta al directori que conté les imatges de validació. Les imatges de validació s'utilitzen per avaluar el model durant l'entrenament, assegurant-se que no estigui sobreajustant les dades d'entrenament.</li>
+<li><code>nc</code>: Aquest paràmetre especifica el <strong>nombre de classes</strong> en el conjunt de dades. En aquest cas, 7 classes. És important que el nombre de classes coincideixi amb el nombre de classes definides als fitxers d'etiquetes.</li>
+<li><code>names</code>: Aquest és un diccionari que mapeja un índex de classe (començant des de 0) al seu nom corresponent. Pot ser una llista numerada com l'exemple o algunes versions permeten un array:</li>
+<li><code>names: ["Chewbacca", "Leia", "Luke", "ObiWan", "Solo", "StormTrooper", "Vader"]</code></li>
+</ul>
+<p>Al següent exemple podem veure com queda un programa per entrenar el model</p>
+<div class="admonition example">
+<p class="admonition-title">Entrenament del model</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-11-1">1</a></span>
+<span class="normal"><a href="#__codelineno-11-2">2</a></span>
+<span class="normal"><a href="#__codelineno-11-3">3</a></span>
+<span class="normal"><a href="#__codelineno-11-4">4</a></span>
+<span class="normal"><a href="#__codelineno-11-5">5</a></span>
+<span class="normal"><a href="#__codelineno-11-6">6</a></span>
+<span class="normal"><a href="#__codelineno-11-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">ultralytics</span><span class="w"> </span><span class="kn">import</span> <span class="n">YOLO</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2"></a><span class="n">model</span> <span class="o">=</span> <span class="n">YOLO</span><span class="p">(</span><span class="s2">&quot;models/yolov8s.pt&quot;</span><span class="p">)</span>   
+<a id="__codelineno-11-3" name="__codelineno-11-3"></a>
+<a id="__codelineno-11-4" name="__codelineno-11-4"></a><span class="n">results</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">train</span><span class="p">(</span>
+<a id="__codelineno-11-5" name="__codelineno-11-5"></a>    <span class="n">data</span><span class="o">=</span><span class="s2">&quot;yolo_config.yaml&quot;</span><span class="p">,</span>       <span class="c1"># arxiu de configuració vist abans</span>
+<a id="__codelineno-11-6" name="__codelineno-11-6"></a>    <span class="n">device</span><span class="o">=</span><span class="s1">&#39;cpu&#39;</span>                   <span class="c1"># &#39;0&#39; per a GPU; &#39;cpu&#39; per a CPU</span>
+<a id="__codelineno-11-7" name="__codelineno-11-7"></a><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p>Com podem veure:</p>
+<ul>
+<li>Es fa servir el model <code>yolov8s</code>. La primera execució es descarrega desde ultralycs i es guarda en la carpeta model</li>
+<li>Posteriorment comença l'entrenament i va mostrant per pantalla les iteracions i les èpoques</li>
+</ul>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Ademès</p>
+<p>Altres arguments interesants son:</p>
+<ul>
+<li><code>save_period=n</code> per a guardar el estat dels hiperparàmetres cada <code>n</code> èpoques i </li>
+<li><code>resume=True</code> per a reprendre l'entrenament. L'entrenament pot parar-se en força bruta (CTRL+C, CTRL+Z). </li>
+</ul>
+<p>També comentar que els models parcials i finals es guarden dins d'una carpeta que es crea anomenada <code>runs</code> i on es creen <code>train_n</code> on <code>n</code> indica el número d'execucions o llançaments que fem del model.</p>
+<p>Dins d'aquest run trobarem al final un model anomenat <code>best.pt</code> amb la millor versió dels hiperparàmetres</p>
+</div>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-12-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-12-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-12-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-12-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-12-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-12-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-12-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-12-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-12-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-12-10">10</a></span>
+<span class="normal"><a href="#__codelineno-12-11">11</a></span>
+<span class="normal"><a href="#__codelineno-12-12">12</a></span>
+<span class="normal"><a href="#__codelineno-12-13">13</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1"></a>Logging<span class="w"> </span>results<span class="w"> </span>to<span class="w"> </span>runs/detect/train5
+<a id="__codelineno-12-2" name="__codelineno-12-2"></a>Starting<span class="w"> </span>training<span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="m">100</span><span class="w"> </span>epochs...
+<a id="__codelineno-12-3" name="__codelineno-12-3"></a>
+<a id="__codelineno-12-4" name="__codelineno-12-4"></a><span class="w">      </span>Epoch<span class="w">    </span>GPU_mem<span class="w">   </span>box_loss<span class="w">   </span>cls_loss<span class="w">   </span>dfl_loss<span class="w">  </span>Instances<span class="w">       </span>Size
+<a id="__codelineno-12-5" name="__codelineno-12-5"></a><span class="w">      </span><span class="m">1</span>/100<span class="w">         </span>0G<span class="w">      </span><span class="m">2</span>.471<span class="w">      </span><span class="m">9</span>.334<span class="w">      </span><span class="m">2</span>.092<span class="w">          </span><span class="m">3</span><span class="w">        </span><span class="m">640</span>:<span class="w"> </span><span class="m">100</span>%<span class="p">|</span>██████████<span class="p">|</span><span class="w"> </span><span class="m">2</span>/2<span class="w"> </span><span class="o">[</span><span class="m">01</span>:59&lt;<span class="m">00</span>:00,<span class="w"> </span><span class="m">59</span>.93s/it<span class="o">]</span><span class="w"> </span>
+<a id="__codelineno-12-6" name="__codelineno-12-6"></a><span class="w">                 </span>Class<span class="w">     </span>Images<span class="w">  </span>Instances<span class="w">      </span>Box<span class="o">(</span>P<span class="w">          </span>R<span class="w">      </span>mAP50<span class="w">  </span>mAP50-95<span class="o">)</span>:<span class="w"> </span><span class="m">100</span>%<span class="p">|</span>██████████<span class="p">|</span><span class="w"> </span><span class="m">1</span>/1<span class="w"> </span><span class="o">[</span><span class="m">00</span>:10&lt;<span class="m">00</span>:00,<span class="w"> </span><span class="m">10</span>.33s/it<span class="o">]</span>
+<a id="__codelineno-12-7" name="__codelineno-12-7"></a><span class="w">                   </span>all<span class="w">          </span><span class="m">4</span><span class="w">         </span><span class="m">14</span><span class="w">     </span><span class="m">0</span>.0158<span class="w">      </span><span class="m">0</span>.667<span class="w">     </span><span class="m">0</span>.0967<span class="w">     </span><span class="m">0</span>.0237
+<a id="__codelineno-12-8" name="__codelineno-12-8"></a>
+<a id="__codelineno-12-9" name="__codelineno-12-9"></a>
+<a id="__codelineno-12-10" name="__codelineno-12-10"></a><span class="w">      </span>Epoch<span class="w">    </span>GPU_mem<span class="w">   </span>box_loss<span class="w">   </span>cls_loss<span class="w">   </span>dfl_loss<span class="w">  </span>Instances<span class="w">       </span>Size
+<a id="__codelineno-12-11" name="__codelineno-12-11"></a><span class="w">      </span><span class="m">2</span>/100<span class="w">         </span>0G<span class="w">      </span><span class="m">1</span>.762<span class="w">      </span><span class="m">5</span>.048<span class="w">      </span><span class="m">1</span>.539<span class="w">         </span><span class="m">13</span><span class="w">        </span><span class="m">640</span>:<span class="w"> </span><span class="m">100</span>%<span class="p">|</span>██████████<span class="p">|</span><span class="w"> </span><span class="m">2</span>/2<span class="w"> </span><span class="o">[</span><span class="m">01</span>:26&lt;<span class="m">00</span>:00,<span class="w"> </span><span class="m">43</span>.25s/it<span class="o">]</span>
+<a id="__codelineno-12-12" name="__codelineno-12-12"></a><span class="w">                 </span>Class<span class="w">     </span>Images<span class="w">  </span>Instances<span class="w">      </span>Box<span class="o">(</span>P<span class="w">          </span>R<span class="w">      </span>mAP50<span class="w">  </span>mAP50-95<span class="o">)</span>:<span class="w"> </span><span class="m">100</span>%<span class="p">|</span>██████████<span class="p">|</span><span class="w"> </span><span class="m">1</span>/1<span class="w"> </span><span class="o">[</span><span class="m">00</span>:02&lt;<span class="m">00</span>:00,<span class="w">  </span><span class="m">2</span>.96s/it<span class="o">]</span>
+<a id="__codelineno-12-13" name="__codelineno-12-13"></a><span class="w">                   </span>all<span class="w">          </span><span class="m">4</span><span class="w">         </span><span class="m">14</span><span class="w">      </span><span class="m">0</span>.373<span class="w">      </span><span class="m">0</span>.262<span class="w">      </span><span class="m">0</span>.098<span class="w">     </span><span class="m">0</span>.0352
+</code></pre></div></td></tr></table></div>
+<p>Per guardar el millor model, per example de l'execució numero 5 (train5):</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-13-1">1</a></span>
+<span class="normal"><a href="#__codelineno-13-2">2</a></span>
+<span class="normal"><a href="#__codelineno-13-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">shutil</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2"></a>
+<a id="__codelineno-13-3" name="__codelineno-13-3"></a><span class="n">shutil</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="s1">&#39;runs/detect/train5/weights/best.pt&#39;</span><span class="p">,</span> <span class="s1">&#39;models/best.pt&#39;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p>Aquest model és el que farem servir a continuació per a les prediccions</p>
+<p>Tota la informació la pots trobar a <a href="https://docs.ultralytics.com/modes/train/">https://docs.ultralytics.com/modes/train/</a></p>
+<h2 id="6-prediccio-del-model">6. Predicció del model</h2>
+<p>Finalment ha arribat el moment de probar el model, a veure si funciona de manera adequada.</p>
+<p>Els passos a seguir son:</p>
+<ol>
+<li>Carregar el model entrenat</li>
+<li>Indicar quina imatge volem processar</li>
+<li>Fer la predicció</li>
+<li>Analitzar els resultats</li>
+<li>Mostrar els resultats</li>
+</ol>
+<p>Mirem-ho pas a pas:</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-14-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-14-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-14-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-14-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-14-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-14-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-14-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-14-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-14-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-14-10">10</a></span>
+<span class="normal"><a href="#__codelineno-14-11">11</a></span>
+<span class="normal"><a href="#__codelineno-14-12">12</a></span>
+<span class="normal"><a href="#__codelineno-14-13">13</a></span>
+<span class="normal"><a href="#__codelineno-14-14">14</a></span>
+<span class="normal"><a href="#__codelineno-14-15">15</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1"></a><span class="n">model_Path</span><span class="o">=</span><span class="s1">&#39;runs/detect/train5/weights/best.pt&#39;</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2"></a><span class="n">model</span><span class="o">=</span><span class="n">YOLO</span><span class="p">(</span><span class="n">model_Path</span><span class="p">)</span>
+<a id="__codelineno-14-3" name="__codelineno-14-3"></a><span class="n">source_image</span><span class="o">=</span><span class="s1">&#39;data/val/images/ba2b2dbd-captura_20250318-161749.png&#39;</span>
+<a id="__codelineno-14-4" name="__codelineno-14-4"></a>
+<a id="__codelineno-14-5" name="__codelineno-14-5"></a><span class="n">images</span><span class="o">=</span><span class="p">[</span>
+<a id="__codelineno-14-6" name="__codelineno-14-6"></a>    <span class="s1">&#39;data/val/images/ba2b2dbd-captura_20250318-161749.png&#39;</span><span class="p">,</span>
+<a id="__codelineno-14-7" name="__codelineno-14-7"></a>    <span class="s1">&#39;data/val/images/be627c47-captura_20250318-161845.png&#39;</span>
+<a id="__codelineno-14-8" name="__codelineno-14-8"></a><span class="p">]</span>
+<a id="__codelineno-14-9" name="__codelineno-14-9"></a>
+<a id="__codelineno-14-10" name="__codelineno-14-10"></a><span class="n">results</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span>
+<a id="__codelineno-14-11" name="__codelineno-14-11"></a>    <span class="n">source</span><span class="o">=</span><span class="n">images</span><span class="p">,</span>
+<a id="__codelineno-14-12" name="__codelineno-14-12"></a>    <span class="n">conf</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span>    <span class="c1"># Umbral de confianza</span>
+<a id="__codelineno-14-13" name="__codelineno-14-13"></a>    <span class="n">save</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>   <span class="c1"># No que dibuje YOLO; lo haremos manualmente con OpenCV</span>
+<a id="__codelineno-14-14" name="__codelineno-14-14"></a>    <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span>
+<a id="__codelineno-14-15" name="__codelineno-14-15"></a><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p>Com podem veure la carrega del model i la predicció no te complicació. Fixar-se que podem fer la predicció per a una o diverses imatges, i el resultat dependrà d'això. La variable result contindrà un llistat amb variables de tipus <code>Results</code>, una per imatge que fem predicció. Tens la informació completa a la seua web en aquest <a href="https://docs.ultralytics.com/reference/engine/results/">link</a></p>
+<p>Aquesta variable depenent del model que hem entrenat tindrà uns resultats o altres. En el cas que ens segueix, que és la detecció d'objectes, ens interessen els elements:</p>
+<ul>
+<li><code>names</code>: diccionari amb les classes de objectes que detecta el nostre model. Coincideix amb les classes que hem entrenat.</li>
+<li><code>boxes</code>: un objecte que conté els elements detectats, que son de tipus <code>Boxes</code></li>
+<li><code>len(Results)</code>: ens dona quants elements s'han detectat.</li>
+</ul>
+<p>Per a cada element de tipus boxes trobarem, per avaluar el resultat:</p>
+<ul>
+<li><code>cls</code>: la id de la classe del objecte detectat</li>
+<li><code>conf</code>: la confiança en tant per 1 del objecte detectat</li>
+<li><code>xyxy</code>: les coordenades dels extrems de la BB, en valors reals</li>
+<li><code>xyxyn</code>: igual que l'anterior però normalitzat segons el tamany de la imatge d'entrada</li>
+<li><code>xywh</code>: la coordenada del centre de la caixa, ample i llarg</li>
+<li><code>xywhn</code>: el mateix, però normalitzat al tamany de la imatge d'entrada</li>
+</ul>
+<p>::: note</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>Tots aquests valors de retorn són tensors (matrius), per tant per accedir al valor _real_ hem d&#39;agafar el primer element com si fos un array, `cls[0]`, `conf[0]`, etc
+</code></pre></div></td></tr></table></div>
+<div class="admonition example">
+<p class="admonition-title">Pintem la informació sobre la imatge</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-15-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-15-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-15-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-15-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-15-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-15-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-15-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-15-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-15-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-15-10">10</a></span>
+<span class="normal"><a href="#__codelineno-15-11">11</a></span>
+<span class="normal"><a href="#__codelineno-15-12">12</a></span>
+<span class="normal"><a href="#__codelineno-15-13">13</a></span>
+<span class="normal"><a href="#__codelineno-15-14">14</a></span>
+<span class="normal"><a href="#__codelineno-15-15">15</a></span>
+<span class="normal"><a href="#__codelineno-15-16">16</a></span>
+<span class="normal"><a href="#__codelineno-15-17">17</a></span>
+<span class="normal"><a href="#__codelineno-15-18">18</a></span>
+<span class="normal"><a href="#__codelineno-15-19">19</a></span>
+<span class="normal"><a href="#__codelineno-15-20">20</a></span>
+<span class="normal"><a href="#__codelineno-15-21">21</a></span>
+<span class="normal"><a href="#__codelineno-15-22">22</a></span>
+<span class="normal"><a href="#__codelineno-15-23">23</a></span>
+<span class="normal"><a href="#__codelineno-15-24">24</a></span>
+<span class="normal"><a href="#__codelineno-15-25">25</a></span>
+<span class="normal"><a href="#__codelineno-15-26">26</a></span>
+<span class="normal"><a href="#__codelineno-15-27">27</a></span>
+<span class="normal"><a href="#__codelineno-15-28">28</a></span>
+<span class="normal"><a href="#__codelineno-15-29">29</a></span>
+<span class="normal"><a href="#__codelineno-15-30">30</a></span>
+<span class="normal"><a href="#__codelineno-15-31">31</a></span>
+<span class="normal"><a href="#__codelineno-15-32">32</a></span>
+<span class="normal"><a href="#__codelineno-15-33">33</a></span>
+<span class="normal"><a href="#__codelineno-15-34">34</a></span>
+<span class="normal"><a href="#__codelineno-15-35">35</a></span>
+<span class="normal"><a href="#__codelineno-15-36">36</a></span>
+<span class="normal"><a href="#__codelineno-15-37">37</a></span>
+<span class="normal"><a href="#__codelineno-15-38">38</a></span>
+<span class="normal"><a href="#__codelineno-15-39">39</a></span>
+<span class="normal"><a href="#__codelineno-15-40">40</a></span>
+<span class="normal"><a href="#__codelineno-15-41">41</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">cv2</span> 
+<a id="__codelineno-15-2" name="__codelineno-15-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<a id="__codelineno-15-3" name="__codelineno-15-3"></a>
+<a id="__codelineno-15-4" name="__codelineno-15-4"></a><span class="n">orig_img</span><span class="o">=</span><span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">source_image</span><span class="p">)</span>
+<a id="__codelineno-15-5" name="__codelineno-15-5"></a><span class="n">orig_img</span><span class="o">=</span><span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">orig_img</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2RGB</span><span class="p">)</span>
+<a id="__codelineno-15-6" name="__codelineno-15-6"></a>
+<a id="__codelineno-15-7" name="__codelineno-15-7"></a><span class="n">predictions</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<a id="__codelineno-15-8" name="__codelineno-15-8"></a><span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">predictions</span><span class="p">))</span>
+<a id="__codelineno-15-9" name="__codelineno-15-9"></a><span class="k">for</span> <span class="n">box</span> <span class="ow">in</span> <span class="n">predictions</span><span class="o">.</span><span class="n">boxes</span><span class="p">:</span>
+<a id="__codelineno-15-10" name="__codelineno-15-10"></a>    <span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">y2</span> <span class="o">=</span> <span class="n">box</span><span class="o">.</span><span class="n">xyxy</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<a id="__codelineno-15-11" name="__codelineno-15-11"></a>
+<a id="__codelineno-15-12" name="__codelineno-15-12"></a>    <span class="c1"># Convertir a int para dibujar con OpenCV</span>
+<a id="__codelineno-15-13" name="__codelineno-15-13"></a>    <span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">y2</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">x1</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">y1</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">x2</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">y2</span><span class="p">)</span>
+<a id="__codelineno-15-14" name="__codelineno-15-14"></a>
+<a id="__codelineno-15-15" name="__codelineno-15-15"></a>    <span class="c1"># ID de la clase detectada</span>
+<a id="__codelineno-15-16" name="__codelineno-15-16"></a>    <span class="n">cls_id</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">box</span><span class="o">.</span><span class="n">cls</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<a id="__codelineno-15-17" name="__codelineno-15-17"></a>
+<a id="__codelineno-15-18" name="__codelineno-15-18"></a>    <span class="c1"># Confianza de la detección</span>
+<a id="__codelineno-15-19" name="__codelineno-15-19"></a>    <span class="n">conf</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">box</span><span class="o">.</span><span class="n">conf</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<a id="__codelineno-15-20" name="__codelineno-15-20"></a>
+<a id="__codelineno-15-21" name="__codelineno-15-21"></a>    <span class="c1"># Nombre de la clase (basado en model.names)</span>
+<a id="__codelineno-15-22" name="__codelineno-15-22"></a>    <span class="n">class_name</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">names</span><span class="p">[</span><span class="n">cls_id</span><span class="p">]</span> <span class="k">if</span> <span class="n">model</span><span class="o">.</span><span class="n">names</span> <span class="ow">and</span> <span class="n">cls_id</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">names</span><span class="p">)</span> <span class="k">else</span> <span class="sa">f</span><span class="s2">&quot;cls_</span><span class="si">{</span><span class="n">cls_id</span><span class="si">}</span><span class="s2">&quot;</span>
+<a id="__codelineno-15-23" name="__codelineno-15-23"></a>
+<a id="__codelineno-15-24" name="__codelineno-15-24"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Clase: </span><span class="si">{</span><span class="n">class_name</span><span class="si">}</span><span class="s2">, confianza: </span><span class="si">{</span><span class="n">conf</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-15-25" name="__codelineno-15-25"></a>    <span class="c1"># Dibujo del rectángulo</span>
+<a id="__codelineno-15-26" name="__codelineno-15-26"></a>    <span class="n">color</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>  <span class="c1"># Verde</span>
+<a id="__codelineno-15-27" name="__codelineno-15-27"></a>    <span class="n">thickness</span> <span class="o">=</span> <span class="mi">2</span>
+<a id="__codelineno-15-28" name="__codelineno-15-28"></a>    <span class="n">cv2</span><span class="o">.</span><span class="n">rectangle</span><span class="p">(</span><span class="n">orig_img</span><span class="p">,</span> <span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">),</span> <span class="p">(</span><span class="n">x2</span><span class="p">,</span> <span class="n">y2</span><span class="p">),</span> <span class="n">color</span><span class="p">,</span> <span class="n">thickness</span><span class="p">)</span>
+<a id="__codelineno-15-29" name="__codelineno-15-29"></a>
+<a id="__codelineno-15-30" name="__codelineno-15-30"></a>    <span class="c1"># Texto (etiqueta + confianza)</span>
+<a id="__codelineno-15-31" name="__codelineno-15-31"></a>    <span class="n">label</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">class_name</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">conf</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span>
+<a id="__codelineno-15-32" name="__codelineno-15-32"></a>    <span class="c1"># Para dibujar el fondo del texto (opcional, para que sea legible)</span>
+<a id="__codelineno-15-33" name="__codelineno-15-33"></a>    <span class="p">(</span><span class="n">tw</span><span class="p">,</span> <span class="n">th</span><span class="p">),</span> <span class="n">baseline</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">getTextSize</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">FONT_HERSHEY_SIMPLEX</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<a id="__codelineno-15-34" name="__codelineno-15-34"></a>    <span class="c1"># Caja para el texto encima del bounding box</span>
+<a id="__codelineno-15-35" name="__codelineno-15-35"></a>    <span class="n">cv2</span><span class="o">.</span><span class="n">rectangle</span><span class="p">(</span><span class="n">orig_img</span><span class="p">,</span> <span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">y1</span> <span class="o">-</span> <span class="n">th</span> <span class="o">-</span> <span class="n">baseline</span><span class="p">),</span> <span class="p">(</span><span class="n">x1</span> <span class="o">+</span> <span class="n">tw</span><span class="p">,</span> <span class="n">y1</span><span class="p">),</span> <span class="n">color</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<a id="__codelineno-15-36" name="__codelineno-15-36"></a>    <span class="n">cv2</span><span class="o">.</span><span class="n">putText</span><span class="p">(</span><span class="n">orig_img</span><span class="p">,</span> <span class="n">label</span><span class="p">,</span> <span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">y1</span> <span class="o">-</span> <span class="n">baseline</span><span class="p">),</span>
+<a id="__codelineno-15-37" name="__codelineno-15-37"></a>                <span class="n">cv2</span><span class="o">.</span><span class="n">FONT_HERSHEY_SIMPLEX</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span>
+<a id="__codelineno-15-38" name="__codelineno-15-38"></a>
+<a id="__codelineno-15-39" name="__codelineno-15-39"></a><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">9</span><span class="p">))</span>
+<a id="__codelineno-15-40" name="__codelineno-15-40"></a><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">orig_img</span><span class="p">)</span>
+<a id="__codelineno-15-41" name="__codelineno-15-41"></a><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div></td></tr></table></div>
+</div>
+<!--
+# Bibligrafia
+
+https://labelstud.io/blog/quickly-create-datasets-for-training-yolo-object-detection-with-label-studio/
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["content.code.copy", "content.code.select", "content.code.annotate"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiat al porta-retalls", "clipboard.copy": "C\u00f2pia al porta-retalls", "search.result.more.one": "1 m\u00e9s en aquesta p\u00e0gina", "search.result.more.other": "# m\u00e9s en aquesta p\u00e0gina", "search.result.none": "Cap document coincideix", "search.result.one": "1 document coincident", "search.result.other": "# documents coincidents", "search.result.placeholder": "Escriu per a comen\u00e7ar a cercar", "search.result.term.missing": "Desaparegut", "select.version": "Selecciona la versi\u00f3"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
